@@ -25,10 +25,11 @@ void main() {
       );
 
       test(
-        'sucess - with data',
+        'success - with data',
         () async {
           final expectedAnswer = [
             RepositoryEntity(
+              id: "31792824",
               name: "flutter",
               description:
                   "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
@@ -60,7 +61,7 @@ void main() {
       );
 
       test(
-        'sucess - empty data',
+        'success - empty data',
         () async {
           final expectedAnswer = <RepositoryEntity>[];
 
