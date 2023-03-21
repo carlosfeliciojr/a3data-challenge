@@ -1,9 +1,13 @@
 import 'dart:convert';
 
 import 'package:a3data_challenge/src/infra/data_source/http.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 class DartHttp implements Http {
+  DartHttp({required this.http});
+
+  final Client http;
+
   @override
   Future<Map<String, dynamic>> get({
     required String url,
