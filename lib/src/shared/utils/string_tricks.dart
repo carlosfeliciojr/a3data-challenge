@@ -6,9 +6,9 @@ class StringTricks {
     required String text,
     required List<dynamic> values,
   }) {
-    for (int i = 0; i < values.length; i++) {
-      final slot = "{$i}";
-      text = text.replaceAll(slot, values[i]);
+    for (int index = 0; index < values.length; index++) {
+      final slot = "{$index}";
+      text = text.replaceAll(slot, values[index].toString());
     }
     return text;
   }
