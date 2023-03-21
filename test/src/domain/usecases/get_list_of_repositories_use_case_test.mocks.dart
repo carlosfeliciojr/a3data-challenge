@@ -9,7 +9,7 @@ import 'package:a3data_challenge/src/domain/entities/repository_entity.dart'
     as _i4;
 import 'package:a3data_challenge/src/domain/params/get_list_of_repositories_params.dart'
     as _i5;
-import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart'
+import 'package:a3data_challenge/src/domain/services/repository_services.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -24,11 +24,11 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [RepositoryRepository].
+/// A class which mocks [RepositoryServices].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRepositoryRepository extends _i1.Mock
-    implements _i2.RepositoryRepository {
+class MockRepositoryServices extends _i1.Mock
+    implements _i2.RepositoryServices {
   @override
   _i3.Future<List<_i4.RepositoryEntity>> getListOfRepositories(
           {required _i5.GetListOfRepositoriesParams? params}) =>

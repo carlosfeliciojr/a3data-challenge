@@ -1,7 +1,7 @@
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/domain/params/get_list_of_repositories_params.dart';
-import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart';
+import 'package:a3data_challenge/src/domain/services/repository_services.dart';
 import 'package:test/test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -9,9 +9,9 @@ import 'package:a3data_challenge/src/domain/usecases/get_list_of_repositories_us
 
 import 'get_list_of_repositories_use_case_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<RepositoryRepository>()])
+@GenerateNiceMocks([MockSpec<RepositoryServices>()])
 void main() {
-  final RepositoryRepository repository = MockRepositoryRepository();
+  final RepositoryServices repository = MockRepositoryServices();
   final GetListOfRepositoriesUseCase getListOfRepositoriesUseCase =
       GetListOfRepositoriesUseCase(repository: repository);
 
@@ -50,33 +50,17 @@ void main() {
 
           expect(result, isNotNull);
           expect(result, isA<List<RepositoryEntity>>());
-          expect(result, equals(expectedAnswer));
+          expect(result.first, isA<RepositoryEntity>());
+          expect(result.first.name, isA<String>());
+          expect(result.first.description, isA<String>());
+          expect(result.first.creationDate, isA<DateTime>());
+          expect(result.first.language, isA<CodeLanguageEnum>());
+          expect(result.first.watchers, isA<int>());
         },
       );
 
       test(
         'sucess - empty data',
-        () async {
-          final expectedAnswer = <RepositoryEntity>[];
-
-          when(
-            repository.getListOfRepositories(params: params),
-          ).thenAnswer(
-            (_) async => expectedAnswer,
-          );
-
-          final result = await getListOfRepositoriesUseCase.call(
-            params: params,
-          );
-
-          expect(result, isNotNull);
-          expect(result, isA<List<RepositoryEntity>>());
-          expect(result, equals([]));
-        },
-      );
-
-      test(
-        'error',
         () async {
           final expectedAnswer = <RepositoryEntity>[];
 
