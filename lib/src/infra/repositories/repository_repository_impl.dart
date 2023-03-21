@@ -1,31 +1,20 @@
-import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
-import 'package:a3data_challenge/src/domain/params/get_list_of_repositories_params.dart';
 import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart';
-import 'package:a3data_challenge/src/infra/requests/get_list_of_repositories_request.dart';
-import 'package:a3data_challenge/src/infra/services/repository_services.dart';
+import 'package:a3data_challenge/src/infra/data_source/local_database.dart';
 
 class RepositoryRepositoryImpl implements RepositoryRepository {
-  final RepositoryServices services;
+  final LocalDatabase database;
 
-  RepositoryRepositoryImpl({required this.services});
+  RepositoryRepositoryImpl({required this.database});
 
   @override
-  Future<List<RepositoryEntity>> getListOfRepositories({
-    required GetListOfRepositoriesParams params,
-  }) async {
-    final listRepository = await services.getListOfRepositories(
-      request: GetListOfRepositoriesRequest.fromParams(params: params),
-    );
-    return listRepository
-        .map(
-          (repository) => RepositoryEntity(
-            name: repository.name,
-            description: repository.description,
-            creationDate: repository.creationDate,
-            language: repository.language,
-            watchers: repository.watchers,
-          ),
-        )
-        .toList();
+  Future<void> getFavoritesRepositories() {
+    // TODO: implement getFavoritesRepositories
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> saveFavoriteRepository() {
+    // TODO: implement saveFavoriteRepository
+    throw UnimplementedError();
   }
 }

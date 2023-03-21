@@ -1,8 +1,9 @@
 import 'package:a3data_challenge/src/core/services_contants.dart';
+import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
+import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
+import 'package:a3data_challenge/src/domain/params/get_list_of_repositories_params.dart';
+import 'package:a3data_challenge/src/domain/services/repository_services.dart';
 import 'package:a3data_challenge/src/infra/data_source/http.dart';
-import 'package:a3data_challenge/src/infra/models/repository_model.dart';
-import 'package:a3data_challenge/src/infra/requests/get_list_of_repositories_request.dart';
-import 'package:a3data_challenge/src/infra/services/repository_services.dart';
 import 'package:a3data_challenge/src/shared/utils/string_tricks.dart';
 
 class RepositoryServicesImpl implements RepositoryServices {
@@ -11,13 +12,13 @@ class RepositoryServicesImpl implements RepositoryServices {
   final Http http;
 
   @override
-  Future<List<RepositoryModel>> getListOfRepositories({
-    required GetListOfRepositoriesRequest request,
+  Future<List<RepositoryEntity>> getListOfRepositories({
+    required GetListOfRepositoriesParams params,
   }) async {
     final listQueryParams = [
-      request.language.text,
-      request.page,
-      request.amountPerPage
+      params.language.text,
+      params.page,
+      params.amountPerPage
     ];
     final url = StringTricks.replaceTextWithValues(
       text: ServicesConstants.searchRepositoryEndPoint,
@@ -28,12 +29,12 @@ class RepositoryServicesImpl implements RepositoryServices {
     final listRepositories = response["items"] as List<Map<String, dynamic>>;
     return listRepositories
         .map(
-          (repository) => RepositoryModel(
+          (repository) => RepositoryEntity(
             name: repository["name"],
             description: repository["description"],
-            creationDate: repository["creationDate"],
-            language: repository["language"],
-            watchers: repository["watchers"],
+            creationDate: DateTime.parse(repository["creationDate"]).toLocal(),
+            language: CodeLanguageEnum.fromText(text: repository["language"]),
+            watchers: repository["watchers"] as int,
           ),
         )
         .toList();
