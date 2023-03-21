@@ -1,19 +1,24 @@
 import 'dart:convert';
 
-import 'package:a3data_challenge/src/infra/data_source/database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPrefsDatabase implements Database {
-  SharedPreferences? _prefs;
+import 'package:a3data_challenge/src/infra/data_source/database.dart';
+
+class SharedPreferencesDatabase implements Database {
+  SharedPreferencesDatabase({
+    required this.sharedPreferences,
+  });
+
+  SharedPreferences sharedPreferences;
 
   @override
   Future<void> init() async {
-    _prefs = await SharedPreferences.getInstance();
+    sharedPreferences = await SharedPreferences.getInstance();
   }
 
   @override
   Future<Map<String, dynamic>?> getItem({required String key}) async {
-    final jsonString = _prefs?.getString(key);
+    final jsonString = sharedPreferences.getString(key);
     return jsonString != null ? jsonDecode(jsonString) : null;
   }
 
@@ -23,16 +28,16 @@ class SharedPrefsDatabase implements Database {
     required Map<String, dynamic> data,
   }) async {
     final jsonString = jsonEncode(data);
-    await _prefs?.setString(key, jsonString);
+    await sharedPreferences.setString(key, jsonString);
   }
 
   @override
   Future<void> removeItem({required String key}) async {
-    await _prefs?.remove(key);
+    await sharedPreferences.remove(key);
   }
 
   @override
   Future<void> clear() async {
-    await _prefs?.clear();
+    await sharedPreferences.clear();
   }
 }
