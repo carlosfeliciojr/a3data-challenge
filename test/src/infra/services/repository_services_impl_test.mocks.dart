@@ -5,11 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:a3data_challenge/src/infra/models/repository_model.dart' as _i4;
-import 'package:a3data_challenge/src/infra/requests/get_list_of_repositories_request.dart'
-    as _i5;
-import 'package:a3data_challenge/src/infra/services/repository_services.dart'
-    as _i2;
+import 'package:a3data_challenge/src/infra/data_source/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -23,23 +19,88 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [RepositoryServices].
+/// A class which mocks [Http].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRepositoryServices extends _i1.Mock
-    implements _i2.RepositoryServices {
+class MockHttp extends _i1.Mock implements _i2.Http {
   @override
-  _i3.Future<List<_i4.RepositoryModel>> getListOfRepositories(
-          {required _i5.GetListOfRepositoriesRequest? request}) =>
+  _i3.Future<Map<String, dynamic>> get({
+    required String? url,
+    Map<String, String>? headers,
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
-          #getListOfRepositories,
+          #get,
           [],
-          {#request: request},
+          {
+            #url: url,
+            #headers: headers,
+          },
         ),
-        returnValue: _i3.Future<List<_i4.RepositoryModel>>.value(
-            <_i4.RepositoryModel>[]),
-        returnValueForMissingStub: _i3.Future<List<_i4.RepositoryModel>>.value(
-            <_i4.RepositoryModel>[]),
-      ) as _i3.Future<List<_i4.RepositoryModel>>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
+  @override
+  _i3.Future<Map<String, dynamic>> post({
+    required String? url,
+    required dynamic data,
+    Map<String, String>? headers,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #post,
+          [],
+          {
+            #url: url,
+            #data: data,
+            #headers: headers,
+          },
+        ),
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
+  @override
+  _i3.Future<Map<String, dynamic>> put({
+    required String? url,
+    required dynamic data,
+    Map<String, String>? headers,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #put,
+          [],
+          {
+            #url: url,
+            #data: data,
+            #headers: headers,
+          },
+        ),
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
+  @override
+  _i3.Future<Map<String, dynamic>> delete({
+    required String? url,
+    Map<String, String>? headers,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #delete,
+          [],
+          {
+            #url: url,
+            #headers: headers,
+          },
+        ),
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 }

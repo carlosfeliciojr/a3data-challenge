@@ -1,57 +1,65 @@
+import 'dart:convert';
 import 'dart:developer';
 
+import 'package:a3data_challenge/src/core/services_contants.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/domain/params/get_list_of_repositories_params.dart';
-import 'package:a3data_challenge/src/infra/models/repository_model.dart';
-import 'package:a3data_challenge/src/infra/repositories/repository_repository_impl.dart';
-import 'package:a3data_challenge/src/infra/requests/get_list_of_repositories_request.dart';
-import 'package:a3data_challenge/src/infra/services/repository_services.dart';
+import 'package:a3data_challenge/src/infra/data_source/http.dart';
+import 'package:a3data_challenge/src/infra/services/repository_services_impl.dart';
+import 'package:a3data_challenge/src/shared/utils/string_tricks.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 
 import 'repository_services_impl_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<RepositoryServices>()])
+@GenerateNiceMocks([MockSpec<Http>()])
 void main() {
-  final RepositoryServices services = MockRepositoryServices();
-  final RepositoryRepositoryImpl repository =
-      RepositoryRepositoryImpl(services: services);
+  final Http http = MockHttp();
+  final RepositoryServicesImpl repository = RepositoryServicesImpl(http: http);
 
-  group('RepositoryRepositoryImpl', () {
+  group('RepositoryServicesImpl', () {
     group(
-      'GetListOfRepositoriesUseCase',
+      'getListOfRepositories - success',
       () {
         final params = GetListOfRepositoriesParams(
           language: CodeLanguageEnum.dart,
           page: 1,
           amountPerPage: 1,
         );
-        final request = GetListOfRepositoriesRequest.fromParams(
-          params: params,
-        );
 
         test(
           'sucess - with data',
           () async {
-            final repositoryEntity = RepositoryEntity(
-              name: "flutter",
-              description:
-                  "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-              creationDate: DateTime(2015, 3, 6, 22, 54, 58),
-              language: CodeLanguageEnum.dart,
-              watchers: 151346,
-            );
-            final repositoryAnswer = [repositoryEntity];
-            final serviceAnswer = [
-              RepositoryModel.fromEntity(entity: repositoryEntity)
+            final listQueryParams = [
+              params.language.text,
+              params.page,
+              params.amountPerPage
             ];
 
+            final httpAnswer = {
+              "items": [
+                {
+                  "name": "flutter",
+                  "description":
+                      "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+                  "creationDate": "2015-03-07T01:54:58.000Z",
+                  "language": "dart",
+                  "watchers": 151346
+                },
+              ]
+            };
+
+            final url = StringTricks.replaceTextWithValues(
+              text: ServicesConstants.searchRepositoryEndPoint,
+              values: listQueryParams,
+            );
+
             when(
-              services.getListOfRepositories(request: request),
+              http.get(url: url),
             ).thenAnswer(
-              (_) async => serviceAnswer,
+              (_) async => httpAnswer,
             );
 
             final result = await repository.getListOfRepositories(
@@ -60,7 +68,12 @@ void main() {
 
             expect(result, isNotNull);
             expect(result, isA<List<RepositoryEntity>>());
-            expect(result, equals(repositoryAnswer));
+            expect(result.first, isA<RepositoryEntity>());
+            expect(result.first.name, isA<String>());
+            expect(result.first.description, isA<String>());
+            expect(result.first.creationDate, isA<DateTime>());
+            expect(result.first.language, isA<CodeLanguageEnum>());
+            expect(result.first.watchers, isA<int>());
           },
         );
       },
