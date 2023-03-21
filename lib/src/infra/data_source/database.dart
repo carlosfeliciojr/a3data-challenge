@@ -1,4 +1,4 @@
-abstract class LocalDatabase {
+abstract class Database {
   Future<void> init();
 
   Future<Map<String, dynamic>?> getItem({required String key});

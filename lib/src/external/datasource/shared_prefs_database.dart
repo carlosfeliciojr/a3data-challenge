@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:a3data_challenge/src/infra/data_source/local_database.dart';
+import 'package:a3data_challenge/src/infra/data_source/database.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPrefsDatabase implements LocalDatabase {
+class SharedPrefsDatabase implements Database {
   SharedPreferences? _prefs;
 
   @override

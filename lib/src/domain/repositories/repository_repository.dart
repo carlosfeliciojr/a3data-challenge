@@ -1,5 +1,11 @@
 abstract class RepositoryRepository {
-  Future<void> saveFavoriteRepository();
+  Future<List<Map<String, dynamic>>> getListFavoritesFromDatabase();
 
-  Future<void> getFavoritesRepositories();
+  Future<void> saveRepositoryInDatabase({
+    required Map<String, dynamic> newFavorite,
+  });
+
+  Future<Map<String, dynamic>> updateRepositoryInDatabase({
+    required Map<String, dynamic> favorite,
+  });
 }
