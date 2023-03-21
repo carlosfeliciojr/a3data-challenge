@@ -1,6 +1,4 @@
-import 'package:a3data_challenge/src/core/enums/status_enum.dart';
-import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
-import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
+import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
 import 'package:a3data_challenge/src/infra/repositories/repository_repository_impl.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -21,7 +19,7 @@ void main() {
         'Success',
         () async {
           final getItemData = {
-            "listFavorites": [
+            KeysConstants.listFavoritesKey: [
               {
                 "id": "31792824",
                 "name": "flutter",
@@ -35,13 +33,13 @@ void main() {
           };
 
           when(
-            database.getItem(key: "favorites"),
+            database.getItem(key: KeysConstants.favoritesKey),
           ).thenAnswer(
             (_) async => getItemData,
           );
 
           final setItemData = {
-            "listFavorites": [
+            KeysConstants.listFavoritesKey: [
               {
                 "id": "31792824",
                 "name": "flutter",
@@ -64,7 +62,8 @@ void main() {
           };
 
           when(
-            database.setItem(key: "favorites", data: setItemData),
+            database.setItem(
+                key: KeysConstants.favoritesKey, data: setItemData),
           ).thenAnswer(
             (_) async {},
           );
@@ -83,13 +82,10 @@ void main() {
             newFavorite: newFavorite,
           );
 
-          // verify(database.getItem(key: "favorites")).called(1);
-          // verify(database.setItem(key: "favorites", data: setItemData))
-          //     .called(1);
-
           verifyInOrder([
-            database.getItem(key: "favorites"),
-            database.setItem(key: "favorites", data: setItemData),
+            database.getItem(key: KeysConstants.favoritesKey),
+            database.setItem(
+                key: KeysConstants.favoritesKey, data: setItemData),
           ]);
         },
       );
@@ -99,7 +95,7 @@ void main() {
         'Success',
         () async {
           final databaseAnwser = {
-            "listFavorites": [
+            KeysConstants.listFavoritesKey: [
               {
                 "id": "31792824",
                 "name": "flutter",
@@ -113,7 +109,7 @@ void main() {
           };
 
           when(
-            database.getItem(key: "favorites"),
+            database.getItem(key: KeysConstants.favoritesKey),
           ).thenAnswer(
             (_) async => databaseAnwser,
           );
@@ -147,7 +143,7 @@ void main() {
           };
 
           final databaseAnwser = {
-            "listFavorites": [
+            KeysConstants.listFavoritesKey: [
               {
                 "id": "31792824",
                 "name": "flutter",
@@ -161,7 +157,7 @@ void main() {
           };
 
           when(
-            database.getItem(key: "favorites"),
+            database.getItem(key: KeysConstants.favoritesKey),
           ).thenAnswer(
             (_) async => databaseAnwser,
           );

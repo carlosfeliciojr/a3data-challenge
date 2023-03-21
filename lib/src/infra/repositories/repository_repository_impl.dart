@@ -1,3 +1,4 @@
+import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
 import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart';
 import 'package:a3data_challenge/src/infra/data_source/database.dart';
 
@@ -8,10 +9,15 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
 
   @override
   Future<List<Map<String, dynamic>>> getListFavoritesFromDatabase() async {
-    final favoritesDatabase =
-        await database.getItem(key: 'favorites') ?? {"listFavorites": []};
-    final listFavorites =
-        List<Map<String, dynamic>>.from(favoritesDatabase["listFavorites"]);
+    final favoritesDatabase = await database.getItem(
+          key: KeysConstants.favoritesKey,
+        ) ??
+        {
+          KeysConstants.listFavoritesKey: [],
+        };
+    final listFavorites = List<Map<String, dynamic>>.from(
+      favoritesDatabase[KeysConstants.listFavoritesKey],
+    );
     return listFavorites;
   }
 
@@ -37,8 +43,8 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
     final listFavorites = await getListFavoritesFromDatabase();
     listFavorites.add(newFavorite);
     await database.setItem(
-      key: "favorites",
-      data: {"listFavorites": listFavorites},
+      key: KeysConstants.favoritesKey,
+      data: {KeysConstants.listFavoritesKey: listFavorites},
     );
   }
 }

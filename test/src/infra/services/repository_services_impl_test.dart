@@ -1,6 +1,5 @@
-import 'dart:convert';
-import 'dart:developer';
 
+import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
 import 'package:a3data_challenge/src/core/constants/services_contants.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
@@ -39,7 +38,7 @@ void main() {
             ];
 
             final httpAnswer = {
-              "listFavorites": [
+              KeysConstants.listFavoritesKey: [
                 {
                   "id": "31792824",
                   "name": "flutter",

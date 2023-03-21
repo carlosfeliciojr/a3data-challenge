@@ -1,3 +1,4 @@
+import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
 import 'package:a3data_challenge/src/core/constants/services_contants.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
@@ -27,7 +28,7 @@ class RepositoryServicesImpl implements RepositoryServices {
 
     final response = await http.get(url: url);
     final listRepositories =
-        response["listFavorites"] as List<Map<String, dynamic>>;
+        response[KeysConstants.listFavoritesKey] as List<Map<String, dynamic>>;
     return listRepositories
         .map(
           (repository) => RepositoryEntity(
