@@ -8,4 +8,14 @@ class RepositoryModel extends RepositoryEntity {
     required super.language,
     required super.watchers,
   });
+
+  factory RepositoryModel.fromEntity({required RepositoryEntity entity}) {
+    return RepositoryModel(
+      name: entity.name,
+      description: entity.description,
+      creationDate: entity.creationDate,
+      language: entity.language,
+      watchers: entity.watchers,
+    );
+  }
 }
