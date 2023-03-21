@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:a3data_challenge/src/core/services_contants.dart';
+import 'package:a3data_challenge/src/core/constants/services_contants.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/domain/params/get_list_of_repositories_params.dart';
@@ -21,7 +21,7 @@ void main() {
 
   group('RepositoryServicesImpl', () {
     group(
-      'getListOfRepositories - success',
+      'getListOfRepositories',
       () {
         final params = GetListOfRepositoriesParams(
           language: CodeLanguageEnum.dart,
@@ -30,7 +30,7 @@ void main() {
         );
 
         test(
-          'sucess - with data',
+          'Success - With data',
           () async {
             final listQueryParams = [
               params.language.text,
