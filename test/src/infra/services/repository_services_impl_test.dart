@@ -1,4 +1,3 @@
-
 import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
 import 'package:a3data_challenge/src/core/constants/services_contants.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
@@ -16,8 +15,7 @@ import 'repository_services_impl_test.mocks.dart';
 @GenerateNiceMocks([MockSpec<Http>()])
 void main() {
   final Http http = MockHttp();
-  final RepositoryServicesImpl repository = RepositoryServicesImpl(http: http);
-
+  final RepositoryServicesImpl service = RepositoryServicesImpl(http: http);
   group('RepositoryServicesImpl', () {
     group(
       'getListOfRepositories',
@@ -38,14 +36,14 @@ void main() {
             ];
 
             final httpAnswer = {
-              KeysConstants.listFavoritesKey: [
+              KeysConstants.itemsKey: [
                 {
-                  "id": "31792824",
+                  "id": 31792824,
                   "name": "flutter",
                   "description":
                       "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                  "creationDate": "2015-03-07T01:54:58.000Z",
-                  "language": "dart",
+                  "created_at": "2015-03-07T01:54:58.000Z",
+                  "language": "Dart",
                   "watchers": 151346
                 },
               ]
@@ -62,8 +60,56 @@ void main() {
               (_) async => httpAnswer,
             );
 
-            final result = await repository.getListOfRepositories(
+            final result = await service.getListOfRepositories(
               params: params,
+            );
+
+            expect(result, isNotNull);
+            expect(result, isA<List<RepositoryEntity>>());
+            expect(result.first, isA<RepositoryEntity>());
+            expect(result.first.name, isA<String>());
+            expect(result.first.description, isA<String>());
+            expect(result.first.creationDate, isA<DateTime>());
+            expect(result.first.language, isA<CodeLanguageEnum>());
+            expect(result.first.watchers, isA<int>());
+          },
+        );
+      },
+    );
+
+    group(
+      'getListOfUserRepositories',
+      () {
+        test(
+          'Success - With data',
+          () async {
+            final listQueryParams = ["carlosfeliciojr"];
+
+            final httpAnswer = <dynamic>[
+              {
+                "id": 31792824,
+                "name": "flutter",
+                "description":
+                    "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+                "created_at": "2015-03-07T01:54:58.000Z",
+                "language": "Dart",
+                "watchers": 151346
+              },
+            ];
+
+            final url = StringTricks.replaceTextWithValues(
+              text: ServicesConstants.getUserRepositories,
+              values: listQueryParams,
+            );
+
+            when(
+              http.get(url: url),
+            ).thenAnswer(
+              (_) async => httpAnswer,
+            );
+
+            final result = await service.getListOfUserRepositories(
+              username: "carlosfeliciojr",
             );
 
             expect(result, isNotNull);

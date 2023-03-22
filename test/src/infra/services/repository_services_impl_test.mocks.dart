@@ -24,7 +24,7 @@ import 'package:mockito/mockito.dart' as _i1;
 /// See the documentation for Mockito's code generation for more information.
 class MockHttp extends _i1.Mock implements _i2.Http {
   @override
-  _i3.Future<Map<String, dynamic>> get({
+  _i3.Future<dynamic> get({
     required String? url,
     Map<String, String>? headers,
   }) =>
@@ -37,13 +37,11 @@ class MockHttp extends _i1.Mock implements _i2.Http {
             #headers: headers,
           },
         ),
-        returnValue:
-            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-        returnValueForMissingStub:
-            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i3.Future<Map<String, dynamic>>);
+        returnValue: _i3.Future<dynamic>.value(),
+        returnValueForMissingStub: _i3.Future<dynamic>.value(),
+      ) as _i3.Future<dynamic>);
   @override
-  _i3.Future<Map<String, dynamic>> post({
+  _i3.Future<dynamic> post({
     required String? url,
     required dynamic data,
     Map<String, String>? headers,
@@ -58,13 +56,11 @@ class MockHttp extends _i1.Mock implements _i2.Http {
             #headers: headers,
           },
         ),
-        returnValue:
-            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-        returnValueForMissingStub:
-            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i3.Future<Map<String, dynamic>>);
+        returnValue: _i3.Future<dynamic>.value(),
+        returnValueForMissingStub: _i3.Future<dynamic>.value(),
+      ) as _i3.Future<dynamic>);
   @override
-  _i3.Future<Map<String, dynamic>> put({
+  _i3.Future<dynamic> put({
     required String? url,
     required dynamic data,
     Map<String, String>? headers,
@@ -79,13 +75,11 @@ class MockHttp extends _i1.Mock implements _i2.Http {
             #headers: headers,
           },
         ),
-        returnValue:
-            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-        returnValueForMissingStub:
-            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i3.Future<Map<String, dynamic>>);
+        returnValue: _i3.Future<dynamic>.value(),
+        returnValueForMissingStub: _i3.Future<dynamic>.value(),
+      ) as _i3.Future<dynamic>);
   @override
-  _i3.Future<Map<String, dynamic>> delete({
+  _i3.Future<dynamic> delete({
     required String? url,
     Map<String, String>? headers,
   }) =>
@@ -98,9 +92,7 @@ class MockHttp extends _i1.Mock implements _i2.Http {
             #headers: headers,
           },
         ),
-        returnValue:
-            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-        returnValueForMissingStub:
-            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i3.Future<Map<String, dynamic>>);
+        returnValue: _i3.Future<dynamic>.value(),
+        returnValueForMissingStub: _i3.Future<dynamic>.value(),
+      ) as _i3.Future<dynamic>);
 }
