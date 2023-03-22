@@ -58,7 +58,7 @@ class _SearchUserWidgetState extends State<SearchUserWidget> {
         ),
         const SizedBox(width: 4),
         IconButton(
-          onPressed: () {},
+          onPressed: widget.onPressed,
           icon: const Icon(Icons.search, color: Color(0xffC9D1D9)),
           constraints: const BoxConstraints(maxWidth: 24, maxHeight: 24),
           padding: const EdgeInsets.all(0),
