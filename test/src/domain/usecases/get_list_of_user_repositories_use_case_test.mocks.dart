@@ -45,12 +45,12 @@ class MockRepositoryServices extends _i1.Mock
       ) as _i3.Future<List<_i4.RepositoryEntity>>);
   @override
   _i3.Future<List<_i4.RepositoryEntity>> getListOfUserRepositories(
-          {required _i5.GetListOfRepositoriesParams? params}) =>
+          {required String? username}) =>
       (super.noSuchMethod(
         Invocation.method(
           #getListOfUserRepositories,
           [],
-          {#params: params},
+          {#username: username},
         ),
         returnValue: _i3.Future<List<_i4.RepositoryEntity>>.value(
             <_i4.RepositoryEntity>[]),

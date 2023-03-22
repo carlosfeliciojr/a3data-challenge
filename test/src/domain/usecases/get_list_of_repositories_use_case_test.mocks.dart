@@ -43,4 +43,18 @@ class MockRepositoryServices extends _i1.Mock
         returnValueForMissingStub: _i3.Future<List<_i4.RepositoryEntity>>.value(
             <_i4.RepositoryEntity>[]),
       ) as _i3.Future<List<_i4.RepositoryEntity>>);
+  @override
+  _i3.Future<List<_i4.RepositoryEntity>> getListOfUserRepositories(
+          {required String? username}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getListOfUserRepositories,
+          [],
+          {#username: username},
+        ),
+        returnValue: _i3.Future<List<_i4.RepositoryEntity>>.value(
+            <_i4.RepositoryEntity>[]),
+        returnValueForMissingStub: _i3.Future<List<_i4.RepositoryEntity>>.value(
+            <_i4.RepositoryEntity>[]),
+      ) as _i3.Future<List<_i4.RepositoryEntity>>);
 }
