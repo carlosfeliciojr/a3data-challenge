@@ -33,7 +33,7 @@ void main() {
           };
 
           when(
-            database.getItem(key: KeysConstants.favoritesKey),
+            database.getItem(key: KeysConstants.itemsKey),
           ).thenAnswer(
             (_) async => getItemData,
           );
@@ -62,8 +62,7 @@ void main() {
           };
 
           when(
-            database.setItem(
-                key: KeysConstants.favoritesKey, data: setItemData),
+            database.setItem(key: KeysConstants.itemsKey, data: setItemData),
           ).thenAnswer(
             (_) async {},
           );
@@ -83,9 +82,8 @@ void main() {
           );
 
           verifyInOrder([
-            database.getItem(key: KeysConstants.favoritesKey),
-            database.setItem(
-                key: KeysConstants.favoritesKey, data: setItemData),
+            database.getItem(key: KeysConstants.itemsKey),
+            database.setItem(key: KeysConstants.itemsKey, data: setItemData),
           ]);
         },
       );
@@ -109,7 +107,7 @@ void main() {
           };
 
           when(
-            database.getItem(key: KeysConstants.favoritesKey),
+            database.getItem(key: KeysConstants.itemsKey),
           ).thenAnswer(
             (_) async => databaseAnwser,
           );
@@ -157,7 +155,7 @@ void main() {
           };
 
           when(
-            database.getItem(key: KeysConstants.favoritesKey),
+            database.getItem(key: KeysConstants.itemsKey),
           ).thenAnswer(
             (_) async => databaseAnwser,
           );

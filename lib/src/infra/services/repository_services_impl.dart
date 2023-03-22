@@ -5,6 +5,7 @@ import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/domain/params/get_list_of_repositories_params.dart';
 import 'package:a3data_challenge/src/domain/services/repository_services.dart';
 import 'package:a3data_challenge/src/infra/data_source/http.dart';
+import 'package:a3data_challenge/src/shared/utils/map_tricks.dart';
 import 'package:a3data_challenge/src/shared/utils/string_tricks.dart';
 
 class RepositoryServicesImpl implements RepositoryServices {
@@ -28,14 +29,14 @@ class RepositoryServicesImpl implements RepositoryServices {
 
     final response = await http.get(url: url);
     final listRepositories =
-        response[KeysConstants.listFavoritesKey] as List<Map<String, dynamic>>;
+        MapTricks.castList(response[KeysConstants.itemsKey]);
     return listRepositories
         .map(
           (repository) => RepositoryEntity(
-            id: repository["id"],
+            id: repository["id"].toString(),
             name: repository["name"],
             description: repository["description"],
-            creationDate: DateTime.parse(repository["creationDate"]).toLocal(),
+            creationDate: DateTime.parse(repository["created_at"]).toLocal(),
             language: CodeLanguageEnum.fromText(text: repository["language"]),
             watchers: repository["watchers"] as int,
           ),

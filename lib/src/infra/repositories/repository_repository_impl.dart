@@ -10,7 +10,7 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
   @override
   Future<List<Map<String, dynamic>>> getListFavoritesFromDatabase() async {
     final favoritesDatabase = await database.getItem(
-          key: KeysConstants.favoritesKey,
+          key: KeysConstants.itemsKey,
         ) ??
         {
           KeysConstants.listFavoritesKey: [],
@@ -43,7 +43,7 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
     final listFavorites = await getListFavoritesFromDatabase();
     listFavorites.add(newFavorite);
     await database.setItem(
-      key: KeysConstants.favoritesKey,
+      key: KeysConstants.itemsKey,
       data: {KeysConstants.listFavoritesKey: listFavorites},
     );
   }
