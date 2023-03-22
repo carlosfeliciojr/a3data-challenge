@@ -88,29 +88,30 @@ class _RepositoryCardWidgetState extends State<RepositoryCardWidget>
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  SizedBox(
-                                    width: 72,
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                          height: 8,
-                                          width: 8,
-                                          decoration: const BoxDecoration(
-                                            color: Color(0xff27B4AB),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(4)),
-                                          ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 8,
+                                        width: 8,
+                                        decoration: const BoxDecoration(
+                                          color: Color(0xff27B4AB),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(4)),
                                         ),
-                                        const SizedBox(width: 8),
-                                        Text(
+                                      ),
+                                      const SizedBox(width: 8),
+                                      SizedBox(
+                                        width: 56,
+                                        child: Text(
                                           widget.language.text,
                                           overflow: TextOverflow.ellipsis,
                                           style: const TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Color(0xff27B4AB)),
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xff27B4AB),
+                                          ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                   const SizedBox(width: 16),
                                   Row(
@@ -121,11 +122,14 @@ class _RepositoryCardWidgetState extends State<RepositoryCardWidget>
                                         size: 16,
                                       ),
                                       const SizedBox(width: 4),
-                                      Text(
-                                        widget.watchers.toString(),
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          color: Color(0xffC9D1D9),
+                                      SizedBox(
+                                        width: 56,
+                                        child: Text(
+                                          widget.watchers.toString(),
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xffC9D1D9),
+                                          ),
                                         ),
                                       ),
                                     ],
