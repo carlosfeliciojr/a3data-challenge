@@ -2,6 +2,7 @@ import 'package:a3data_challenge/src/app/module/repositories/list_repositories/c
 import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart';
 import 'package:a3data_challenge/src/domain/services/repository_services.dart';
 import 'package:a3data_challenge/src/domain/usecases/get_list_of_repositories_use_case.dart';
+import 'package:a3data_challenge/src/domain/usecases/get_list_of_user_repositories_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/set_repository_as_favorite_use_case.dart';
 import 'package:a3data_challenge/src/external/datasource/dart_http_impl.dart';
 import 'package:a3data_challenge/src/external/datasource/shared_preferences_database.dart';
@@ -50,6 +51,12 @@ void _registerUseCases() {
       repository: getIt.get<RepositoryServices>(),
     ),
   );
+  getIt.registerSingleton<GetListOfUserRepositoriesUseCase>(
+    GetListOfUserRepositoriesUseCase(
+      repository: getIt.get<RepositoryServices>(),
+    ),
+  );
+
   getIt.registerSingleton<SetRepositoryAsFavoriteUseCase>(
     SetRepositoryAsFavoriteUseCase(
       repository: getIt.get<RepositoryRepository>(),
@@ -61,6 +68,8 @@ void _registerControllers() {
   getIt.registerFactory<RepositoriesController>(
     () => RepositoriesController(
       getListOfRepositoriesUseCase: getIt.get<GetListOfRepositoriesUseCase>(),
+      getListOfUserRepositoriesUseCase:
+          getIt.get<GetListOfUserRepositoriesUseCase>(),
     ),
   );
 }

@@ -5,4 +5,8 @@ abstract class RepositoryServices {
   Future<List<RepositoryEntity>> getListOfRepositories({
     required GetListOfRepositoriesParams params,
   });
+
+  Future<List<RepositoryEntity>> getListOfUserRepositories({
+    required String username,
+  });
 }

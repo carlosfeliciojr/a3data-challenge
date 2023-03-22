@@ -5,10 +5,12 @@ import 'package:flutter/services.dart';
 class SearchUserWidget extends StatefulWidget {
   const SearchUserWidget({
     super.key,
-    required this.onPressed,
+    required this.onSearch,
+    required this.onChanged,
   });
 
-  final void Function()? onPressed;
+  final Future<void> Function({required String username}) onSearch;
+  final void Function(String) onChanged;
 
   @override
   State<SearchUserWidget> createState() => _SearchUserWidgetState();
@@ -48,6 +50,7 @@ class _SearchUserWidgetState extends State<SearchUserWidget> {
                 Radius.circular(16),
               ),
             ),
+            onChanged: widget.onChanged,
             style: const TextStyle(color: Color(0xffC9D1D9)),
             maxLength: 39,
             maxLengthEnforcement: MaxLengthEnforcement.enforced,
@@ -58,7 +61,9 @@ class _SearchUserWidgetState extends State<SearchUserWidget> {
         ),
         const SizedBox(width: 4),
         IconButton(
-          onPressed: widget.onPressed,
+          onPressed: () async {
+            widget.onSearch(username: _textController.text);
+          },
           icon: const Icon(Icons.search, color: Color(0xffC9D1D9)),
           constraints: const BoxConstraints(maxWidth: 24, maxHeight: 24),
           padding: const EdgeInsets.all(0),

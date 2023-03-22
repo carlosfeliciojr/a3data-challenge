@@ -33,7 +33,8 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
         leading: const GithubIconWidget(),
         centerTitle: true,
         title: SearchUserWidget(
-          onPressed: () {},
+          onSearch: controller.getUserRepositories,
+          onChanged: controller.onInputUserName,
         ),
         actions: [
           FavoritesRepositoriesWidget(
@@ -48,21 +49,26 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
           initialData: controller.repositories.listOfRepositories,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              return ListView.builder(
-                itemCount: controller.repositories.lenght,
-                itemBuilder: (context, index) {
-                  final lastIndex = controller.repositories.lenght - 1;
-                  final repository =
-                      controller.repositories.listOfRepositories[index];
-                  return RepositoryCardWidget(
-                    key: ValueKey(index),
-                    index: index,
-                    lastIndex: lastIndex,
-                    name: repository.name,
-                    description: repository.description,
-                    language: repository.language,
-                    creationDate: repository.creationDate,
-                    watchers: repository.watchers,
+              return AnimatedBuilder(
+                animation: controller,
+                builder: (context, widget) {
+                  return ListView.builder(
+                    itemCount: controller.repositories.lenght,
+                    itemBuilder: (context, index) {
+                      final lastIndex = controller.repositories.lenght - 1;
+                      final repository =
+                          controller.repositories.listOfRepositories[index];
+                      return RepositoryCardWidget(
+                        key: ValueKey(index),
+                        index: index,
+                        lastIndex: lastIndex,
+                        name: repository.name,
+                        description: repository.description ?? 'Sem descrição',
+                        language: repository.language,
+                        creationDate: repository.creationDate,
+                        watchers: repository.watchers,
+                      );
+                    },
                   );
                 },
               );

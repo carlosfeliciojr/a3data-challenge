@@ -3,7 +3,7 @@ import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 class RepositoryEntity {
   String id;
   String name;
-  String description;
+  String? description;
   DateTime creationDate;
   CodeLanguageEnum language;
   int watchers;

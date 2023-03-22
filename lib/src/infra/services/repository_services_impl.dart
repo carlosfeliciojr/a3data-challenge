@@ -28,19 +28,54 @@ class RepositoryServicesImpl implements RepositoryServices {
     );
 
     final response = await http.get(url: url);
-    final listRepositories =
-        MapTricks.castList(response[KeysConstants.itemsKey]);
-    return listRepositories
-        .map(
-          (repository) => RepositoryEntity(
+    final listRepositoriesMap = MapTricks.convertDynamicToListMap(
+      response[KeysConstants.itemsKey],
+    );
+    final listRepositoriesEntity = listRepositoriesMap.map(
+      (repository) {
+        final repositoryEntity = RepositoryEntity(
+          id: repository["id"].toString(),
+          name: repository["name"],
+          description: repository["description"],
+          creationDate: DateTime.parse(repository["created_at"]).toLocal(),
+          language: CodeLanguageEnum.fromText(text: repository["language"]),
+          watchers: repository["watchers"] as int,
+        );
+        return repositoryEntity;
+      },
+    );
+    return listRepositoriesEntity.toList();
+  }
+
+  @override
+  Future<List<RepositoryEntity>> getListOfUserRepositories({
+    required String username,
+  }) async {
+    try {
+      final url = StringTricks.replaceTextWithValues(
+        text: ServicesConstants.getUserRepositories,
+        values: [username],
+      );
+
+      final response = await http.get(url: url);
+      final listRepositoriesMap = MapTricks.convertDynamicToListMap(response);
+      final listRepositoriesEntity = listRepositoriesMap.map(
+        (repository) {
+          final repositoryEntity = RepositoryEntity(
             id: repository["id"].toString(),
             name: repository["name"],
             description: repository["description"],
             creationDate: DateTime.parse(repository["created_at"]).toLocal(),
-            language: CodeLanguageEnum.fromText(text: repository["language"]),
+            language:
+                CodeLanguageEnum.fromText(text: repository["language"] ?? ''),
             watchers: repository["watchers"] as int,
-          ),
-        )
-        .toList();
+          );
+          return repositoryEntity;
+        },
+      );
+      return listRepositoriesEntity.toList();
+    } catch (e) {
+      return [];
+    }
   }
 }
