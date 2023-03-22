@@ -25,8 +25,8 @@ void main() {
                 "name": "flutter",
                 "description":
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "creationDate": "2015-03-06T22:54:58.000",
-                "language": "dart",
+                "created_at": "2015-03-06T22:54:58.000",
+                "language": "Dart",
                 "watchers": 151346,
               }
             ]
@@ -45,8 +45,8 @@ void main() {
                 "name": "flutter",
                 "description":
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "creationDate": "2015-03-06T22:54:58.000",
-                "language": "dart",
+                "created_at": "2015-03-06T22:54:58.000",
+                "language": "Dart",
                 "watchers": 151346,
               },
               {
@@ -54,8 +54,8 @@ void main() {
                 "name": "flutter",
                 "description":
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "creationDate": "2015-03-06T22:54:58.000",
-                "language": "dart",
+                "created_at": "2015-03-06T22:54:58.000",
+                "language": "Dart",
                 "watchers": 151346,
               }
             ]
@@ -72,8 +72,8 @@ void main() {
             "name": "flutter",
             "description":
                 "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-            "creationDate": "2015-03-06T22:54:58.000",
-            "language": "dart",
+            "created_at": "2015-03-06T22:54:58.000",
+            "language": "Dart",
             "watchers": 151346,
           };
 
@@ -99,8 +99,8 @@ void main() {
                 "name": "flutter",
                 "description":
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "creationDate": "2015-03-06T22:54:58.000",
-                "language": "dart",
+                "created_at": "2015-03-06T22:54:58.000",
+                "language": "Dart",
                 "watchers": 200000,
               },
             ]
@@ -120,7 +120,7 @@ void main() {
           expect(result.first["id"], isA<String>());
           expect(result.first["name"], isA<String>());
           expect(result.first["description"], isA<String>());
-          expect(result.first["creationDate"], isA<String>());
+          expect(result.first["created_at"], isA<String>());
           expect(result.first["language"], isA<String>());
           expect(result.first["watchers"], isA<int>());
         },
@@ -135,8 +135,8 @@ void main() {
             "name": "flutter",
             "description":
                 "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-            "creationDate": "2015-03-06T22:54:58.000",
-            "language": "dart",
+            "created_at": "2015-03-06T22:54:58.000",
+            "language": "Dart",
             "watchers": 200000,
           };
 
@@ -147,8 +147,8 @@ void main() {
                 "name": "flutter",
                 "description":
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "creationDate": "2015-03-06T22:54:58.000",
-                "language": "dart",
+                "created_at": "2015-03-06T22:54:58.000",
+                "language": "Dart",
                 "watchers": 200000,
               },
             ]

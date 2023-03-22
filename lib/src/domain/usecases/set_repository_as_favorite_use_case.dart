@@ -37,7 +37,7 @@ class SetRepositoryAsFavoriteUseCase {
       "id": repository.id,
       "name": repository.name,
       "description": repository.description,
-      "creationDate": repository.creationDate.toIso8601String(),
+      "created_at": repository.creationDate.toIso8601String(),
       "language": repository.language.text,
       "watchers": repository.watchers,
     };

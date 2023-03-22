@@ -37,8 +37,8 @@ void main() {
               "name": "flutter",
               "description":
                   "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-              "creationDate": "2015-03-06T22:54:58.000",
-              "language": "dart",
+              "created_at": "2015-03-06T22:54:58.000",
+              "language": "Dart",
               "watchers": 151346,
             };
 
@@ -77,8 +77,8 @@ void main() {
                 "name": "flutter",
                 "description":
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "creationDate": "2015-03-06T22:54:58.000",
-                "language": "dart",
+                "created_at": "2015-03-06T22:54:58.000",
+                "language": "Dart",
                 "watchers": 200000,
               }
             ];
@@ -118,8 +118,8 @@ void main() {
                 "name": "flutter",
                 "description":
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "creationDate": "2015-03-06T22:54:58.000",
-                "language": "dart",
+                "created_at": "2015-03-06T22:54:58.000",
+                "language": "Dart",
                 "watchers": 151346,
               },
             ];
