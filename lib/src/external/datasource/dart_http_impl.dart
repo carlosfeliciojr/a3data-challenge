@@ -9,7 +9,7 @@ class DartHttp implements Http {
   final Client http;
 
   @override
-  Future<Map<String, dynamic>> get({
+  Future<dynamic> get({
     required String url,
     Map<String, String>? headers,
   }) async {
@@ -18,7 +18,7 @@ class DartHttp implements Http {
   }
 
   @override
-  Future<Map<String, dynamic>> post({
+  Future<dynamic> post({
     required String url,
     required dynamic data,
     Map<String, String>? headers,
@@ -32,7 +32,7 @@ class DartHttp implements Http {
   }
 
   @override
-  Future<Map<String, dynamic>> put({
+  Future<dynamic> put({
     required String url,
     required dynamic data,
     Map<String, String>? headers,
@@ -46,7 +46,7 @@ class DartHttp implements Http {
   }
 
   @override
-  Future<Map<String, dynamic>> delete({
+  Future<dynamic> delete({
     required String url,
     Map<String, String>? headers,
   }) async {

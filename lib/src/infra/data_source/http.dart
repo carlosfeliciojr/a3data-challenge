@@ -1,22 +1,22 @@
 abstract class Http {
-  Future<Map<String, dynamic>> get({
+  Future<dynamic> get({
     required String url,
     Map<String, String>? headers,
   });
 
-  Future<Map<String, dynamic>> post({
-    required String url,
-    required dynamic data,
-    Map<String, String>? headers,
-  });
-
-  Future<Map<String, dynamic>> put({
+  Future<dynamic> post({
     required String url,
     required dynamic data,
     Map<String, String>? headers,
   });
 
-  Future<Map<String, dynamic>> delete({
+  Future<dynamic> put({
+    required String url,
+    required dynamic data,
+    Map<String, String>? headers,
+  });
+
+  Future<dynamic> delete({
     required String url,
     Map<String, String>? headers,
   });
