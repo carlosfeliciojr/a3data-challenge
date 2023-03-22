@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:flutter/material.dart';
 
@@ -43,9 +41,6 @@ class _RepositoryCardWidgetState extends State<RepositoryCardWidget>
 
   @override
   Widget build(BuildContext context) {
-    final repositoryWidth = (MediaQuery.of(context).size.width / 10) * 7;
-    final buttonWidht =
-        MediaQuery.of(context).size.width - repositoryWidth - 32;
     return Padding(
       padding: cardPadding(),
       child: Stack(
