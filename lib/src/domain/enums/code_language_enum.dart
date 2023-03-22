@@ -1,5 +1,5 @@
 enum CodeLanguageEnum {
-  dart(text: "dart");
+  dart(text: "Dart");
 
   final String text;
 
