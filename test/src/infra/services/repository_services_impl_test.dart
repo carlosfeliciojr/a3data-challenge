@@ -122,6 +122,66 @@ void main() {
             expect(result.first.watchers, isA<int>());
           },
         );
+
+        test(
+          'Success - Empty data',
+          () async {
+            final listQueryParams = ["carlosfeliciojr"];
+
+            final httpAnswer = <dynamic>[];
+
+            final url = StringTricks.replaceTextWithValues(
+              text: ServicesConstants.getUserRepositories,
+              values: listQueryParams,
+            );
+
+            when(
+              http.get(url: url),
+            ).thenAnswer(
+              (_) async => httpAnswer,
+            );
+
+            final result = await service.getListOfUserRepositories(
+              username: "carlosfeliciojr",
+            );
+
+            expect(result, isNotNull);
+            expect(result, isA<List<RepositoryEntity>>());
+            expect(result, isEmpty);
+          },
+        );
+
+        test(
+          'Error - Empty data',
+          () async {
+            final listQueryParams = ["carlosfeliciojr"];
+
+            final httpAnswer = {
+              "message": "Not Found",
+              "documentation_url":
+                  "https://docs.github.com/rest/reference/repos#list-repositories-for-a-user"
+            };
+
+            final url = StringTricks.replaceTextWithValues(
+              text: ServicesConstants.getUserRepositories,
+              values: listQueryParams,
+            );
+
+            when(
+              http.get(url: url),
+            ).thenAnswer(
+              (_) async => httpAnswer,
+            );
+
+            final result = await service.getListOfUserRepositories(
+              username: "carlosfeliciojr",
+            );
+
+            expect(result, isNotNull);
+            expect(result, isA<List<RepositoryEntity>>());
+            expect(result, isEmpty);
+          },
+        );
       },
     );
   });

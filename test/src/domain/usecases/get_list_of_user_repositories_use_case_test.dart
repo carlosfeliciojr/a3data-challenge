@@ -40,13 +40,13 @@ void main() {
           ];
 
           when(
-            repository.getListOfRepositories(params: params),
+            repository.getListOfUserRepositories(username: 'carlosfeliciojr'),
           ).thenAnswer(
             (_) async => expectedAnswer,
           );
 
           final result = await getListOfUserRepositoriesUseCase.call(
-            params: params,
+            username: 'carlosfeliciojr',
           );
 
           expect(result, isNotNull);
@@ -72,7 +72,7 @@ void main() {
           );
 
           final result = await getListOfUserRepositoriesUseCase.call(
-            params: params,
+            username: 'carlosfelicio',
           );
 
           expect(result, isNotNull);
