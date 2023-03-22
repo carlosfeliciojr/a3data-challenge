@@ -1,5 +1,6 @@
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class RepositoryCardWidget extends StatefulWidget {
   const RepositoryCardWidget({
@@ -87,25 +88,29 @@ class _RepositoryCardWidgetState extends State<RepositoryCardWidget>
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        height: 8,
-                                        width: 8,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xff27B4AB),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4)),
+                                  SizedBox(
+                                    width: 72,
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          height: 8,
+                                          width: 8,
+                                          decoration: const BoxDecoration(
+                                            color: Color(0xff27B4AB),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(4)),
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(width: 8),
-                                      Text(
-                                        widget.language.text,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            color: Color(0xff27B4AB)),
-                                      ),
-                                    ],
+                                        const SizedBox(width: 8),
+                                        Text(
+                                          widget.language.text,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: Color(0xff27B4AB)),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                   const SizedBox(width: 16),
                                   Row(
@@ -124,7 +129,27 @@ class _RepositoryCardWidgetState extends State<RepositoryCardWidget>
                                         ),
                                       ),
                                     ],
-                                  )
+                                  ),
+                                  const SizedBox(width: 16),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.date_range,
+                                        color: Color(0xffC9D1D9),
+                                        size: 16,
+                                      ),
+                                      const SizedBox(width: 4),
+                                      Text(
+                                        DateFormat('yy/MM/dd')
+                                            .format(
+                                                widget.creationDate.toLocal())
+                                            .toString(),
+                                        style: const TextStyle(
+                                          color: Color(0xffC9D1D9),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ],
