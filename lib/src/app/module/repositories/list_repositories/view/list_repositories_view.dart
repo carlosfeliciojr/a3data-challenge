@@ -1,5 +1,8 @@
 import 'package:a3data_challenge/src/app/module/repositories/list_repositories/controller/repositories_controller.dart';
+import 'package:a3data_challenge/src/app/module/repositories/list_repositories/widgets/favorites_repositories_widget.dart';
 import 'package:a3data_challenge/src/app/module/repositories/list_repositories/widgets/repository_card_widget.dart';
+import 'package:a3data_challenge/src/app/module/repositories/list_repositories/widgets/search_user_widget.dart';
+import 'package:a3data_challenge/src/shared/wigets/github_icon_widget.dart';
 import 'package:flutter/material.dart';
 
 class ListRepositoriesView extends StatefulWidget {
@@ -27,7 +30,16 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
       extendBodyBehindAppBar: false,
       appBar: AppBar(
         backgroundColor: const Color(0xff0D1017),
-        title: const Text("GitHub Repositories"),
+        leading: const GithubIconWidget(),
+        centerTitle: true,
+        title: SearchUserWidget(
+          onPressed: () {},
+        ),
+        actions: [
+          FavoritesRepositoriesWidget(
+            onPressed: () {},
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
