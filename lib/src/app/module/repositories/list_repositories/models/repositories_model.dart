@@ -12,6 +12,10 @@ class RepositoriesModel {
     return listOfRepositories.length;
   }
 
+  bool get isEmpty {
+    return listOfRepositories.isEmpty;
+  }
+
   void populateListOfRepositories({
     required List<RepositoryEntity> listOfRepositories,
   }) {
