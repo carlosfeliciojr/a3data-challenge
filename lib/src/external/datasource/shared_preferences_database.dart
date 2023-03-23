@@ -17,7 +17,7 @@ class SharedPreferencesDatabase implements Database {
   }
 
   @override
-  Future<Map<String, dynamic>?> getItem({required String key}) async {
+  Future<dynamic> getItem({required String key}) async {
     final jsonString = sharedPreferences.getString(key);
     return jsonString != null ? jsonDecode(jsonString) : null;
   }
