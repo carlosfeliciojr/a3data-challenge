@@ -1,3 +1,4 @@
+import 'package:a3data_challenge/src/app/module/repositories/list_repositories/models/repository_model.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -5,6 +6,7 @@ import 'package:intl/intl.dart';
 class RepositoryCardWidget extends StatefulWidget {
   const RepositoryCardWidget({
     super.key,
+    required this.id,
     required this.index,
     required this.name,
     required this.description,
@@ -12,8 +14,11 @@ class RepositoryCardWidget extends StatefulWidget {
     required this.language,
     required this.watchers,
     required this.lastIndex,
+    required this.isFavorite,
+    required this.onPressed,
   });
 
+  final String id;
   final String name;
   final String description;
   final DateTime creationDate;
@@ -21,6 +26,8 @@ class RepositoryCardWidget extends StatefulWidget {
   final int watchers;
   final int index;
   final int lastIndex;
+  final bool isFavorite;
+  final Future<void> Function({required RepositoryModel repository}) onPressed;
 
   @override
   State<RepositoryCardWidget> createState() => _RepositoryCardWidgetState();
@@ -162,36 +169,46 @@ class _RepositoryCardWidgetState extends State<RepositoryCardWidget>
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                    style: const ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll(
-                        Color(0xff58A5FF),
+                  if (!widget.isFavorite)
+                    ElevatedButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                          Color(0xff58A5FF),
+                        ),
+                        elevation: MaterialStatePropertyAll(0),
                       ),
-                      elevation: MaterialStatePropertyAll(0),
-                    ),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    onPressed: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: const [
-                          Icon(
-                            Icons.bookmark_add_outlined,
-                            color: Color(0xffC9D1D9),
-                            size: 28,
-                          ),
-                          Text(
-                            "Save\nRepo",
-                            style: TextStyle(
-                              fontSize: 16,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      onPressed: () async => widget.onPressed(
+                        repository: RepositoryModel(
+                          id: widget.id,
+                          name: widget.name,
+                          description: widget.description,
+                          creationDate: widget.creationDate,
+                          language: widget.language,
+                          watchers: widget.watchers,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: const [
+                            Icon(
+                              Icons.bookmark_add_outlined,
                               color: Color(0xffC9D1D9),
-                              fontWeight: FontWeight.w500,
+                              size: 28,
                             ),
-                          ),
-                        ],
+                            Text(
+                              "Save\nRepo",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xffC9D1D9),
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ),

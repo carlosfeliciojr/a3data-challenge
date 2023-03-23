@@ -16,6 +16,17 @@ class RepositoriesModel {
     return listOfRepositories.isEmpty;
   }
 
+  void updateRepository({
+    required RepositoryModel modifiedRepository,
+  }) {
+    final repositoryIndex = _listOfRepositories.indexWhere(
+      (repository) => repository.id == modifiedRepository.id,
+    );
+    if (repositoryIndex != -1) {
+      _listOfRepositories[repositoryIndex] = modifiedRepository;
+    }
+  }
+
   void populateListOfRepositories({
     required List<RepositoryEntity> listOfRepositories,
   }) {

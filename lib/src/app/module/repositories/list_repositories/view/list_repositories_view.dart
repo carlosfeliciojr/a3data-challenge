@@ -63,14 +63,18 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
                       final repository =
                           controller.repositories.listOfRepositories[index];
                       return RepositoryCardWidget(
-                        key: ValueKey(index),
+                        key: ValueKey(repository.id),
+                        id: repository.id,
                         index: index,
                         lastIndex: lastIndex,
                         name: repository.name,
-                        description: repository.description ?? 'Sem descrição',
+                        description:
+                            repository.description ?? 'Without description',
                         language: repository.language,
                         creationDate: repository.creationDate,
                         watchers: repository.watchers,
+                        isFavorite: repository.isFavorite,
+                        onPressed: controller.addReporitoryToFavorites,
                       );
                     },
                   );
