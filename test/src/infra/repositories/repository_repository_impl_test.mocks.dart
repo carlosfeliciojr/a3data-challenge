@@ -33,16 +33,15 @@ class MockDatabase extends _i1.Mock implements _i2.Database {
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
   @override
-  _i3.Future<Map<String, dynamic>?> getItem({required String? key}) =>
-      (super.noSuchMethod(
+  _i3.Future<dynamic> getItem({required String? key}) => (super.noSuchMethod(
         Invocation.method(
           #getItem,
           [],
           {#key: key},
         ),
-        returnValue: _i3.Future<Map<String, dynamic>?>.value(),
-        returnValueForMissingStub: _i3.Future<Map<String, dynamic>?>.value(),
-      ) as _i3.Future<Map<String, dynamic>?>);
+        returnValue: _i3.Future<dynamic>.value(),
+        returnValueForMissingStub: _i3.Future<dynamic>.value(),
+      ) as _i3.Future<dynamic>);
   @override
   _i3.Future<void> setItem({
     required String? key,

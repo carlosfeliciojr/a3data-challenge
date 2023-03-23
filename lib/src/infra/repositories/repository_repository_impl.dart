@@ -16,7 +16,7 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
       key: KeysConstants.itemsKey,
     );
     final listFavorites = MapTricks.convertDynamicToListMap(
-      favoritesDatabase?[KeysConstants.itemsKey],
+      favoritesDatabase,
     );
     return listFavorites
         .map(
@@ -41,12 +41,22 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
       (repository) => repository.id == modifiedFavorite.id,
     );
     if (favoriteIndex != -1) {
-      listFavorites[favoriteIndex] = modifiedFavorite;
+      final needUpdate = listFavorites[favoriteIndex].name !=
+              modifiedFavorite.name ||
+          listFavorites[favoriteIndex].description !=
+              modifiedFavorite.description ||
+          listFavorites[favoriteIndex].creationDate !=
+              modifiedFavorite.creationDate ||
+          listFavorites[favoriteIndex].language != modifiedFavorite.language ||
+          listFavorites[favoriteIndex].watchers != modifiedFavorite.watchers;
+      if (needUpdate) {
+        await saveRepositoryInDatabase(
+            newFavorite: listFavorites[favoriteIndex]);
 
-      await saveRepositoryInDatabase(newFavorite: listFavorites[favoriteIndex]);
-
-      return modifiedFavorite;
+        return modifiedFavorite;
+      }
     }
+    return null;
   }
 
   @override

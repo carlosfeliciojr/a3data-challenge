@@ -20,19 +20,17 @@ void main() {
       test(
         'Success',
         () async {
-          final getItemData = {
-            KeysConstants.itemsKey: [
-              {
-                "id": "31792824",
-                "name": "flutter",
-                "description":
-                    "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "creationDate": "2015-03-06T22:54:58.000",
-                "language": "Dart",
-                "watchers": 151346,
-              }
-            ]
-          };
+          final getItemData = <dynamic>[
+            {
+              "id": "31792824",
+              "name": "flutter",
+              "description":
+                  "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+              "creationDate": "2015-03-06T22:54:58.000",
+              "language": "Dart",
+              "watchers": 151346,
+            }
+          ];
 
           when(
             database.getItem(key: KeysConstants.itemsKey),
@@ -92,19 +90,17 @@ void main() {
       test(
         'Success',
         () async {
-          final databaseAnwser = {
-            KeysConstants.itemsKey: [
-              {
-                "id": "31792824",
-                "name": "flutter",
-                "description":
-                    "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "creationDate": "2015-03-06T22:54:58.000",
-                "language": "Dart",
-                "watchers": 200000,
-              },
-            ]
-          };
+          final databaseAnwser = <dynamic>[
+            {
+              "id": "31792824",
+              "name": "flutter",
+              "description":
+                  "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+              "creationDate": "2015-03-06T22:54:58.000",
+              "language": "Dart",
+              "watchers": 200000,
+            },
+          ];
 
           when(
             database.getItem(key: KeysConstants.itemsKey),
@@ -130,19 +126,17 @@ void main() {
       test(
         'Nothing happen',
         () async {
-          final databaseAnwser = {
-            KeysConstants.listFavoritesKey: [
-              {
-                "id": "31792824",
-                "name": "flutter",
-                "description":
-                    "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "creationDate": "2015-03-06T22:54:58.000",
-                "language": "Dart",
-                "watchers": 200000,
-              },
-            ]
-          };
+          final databaseAnwser = <dynamic>[
+            {
+              "id": "31792824",
+              "name": "flutter",
+              "description":
+                  "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+              "creationDate": "2015-03-06T22:54:58.000",
+              "language": "Dart",
+              "watchers": 200000,
+            },
+          ];
 
           final favorite = RepositoryEntity(
             id: "31792824",
