@@ -9,8 +9,10 @@ class RepositoryModel extends RepositoryEntity {
     required super.creationDate,
     required super.language,
     required super.watchers,
-    // required super.isFavorite,
+    this.isFavorite = false,
   });
+
+  bool isFavorite = false;
 
   factory RepositoryModel.fromEntity({required RepositoryEntity entity}) {
     return RepositoryModel(
@@ -20,7 +22,6 @@ class RepositoryModel extends RepositoryEntity {
       creationDate: entity.creationDate,
       language: entity.language,
       watchers: entity.watchers,
-      // isFavorite: entity.isFavorite,
     );
   }
 
@@ -40,7 +41,6 @@ class RepositoryModel extends RepositoryEntity {
       creationDate: creationDate ?? this.creationDate,
       language: language ?? this.language,
       watchers: watchers ?? this.watchers,
-      // isFavorite: isFavorite ?? this.isFavorite,
     );
   }
 }
