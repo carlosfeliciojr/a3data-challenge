@@ -10,7 +10,7 @@ class FavoriteRepositoryModel extends RepositoryModel {
     required super.creationDate,
     required super.language,
     required super.watchers,
-    required super.isFavorite,
+    super.isFavorite = true,
   });
 
   factory FavoriteRepositoryModel.fromEntity({

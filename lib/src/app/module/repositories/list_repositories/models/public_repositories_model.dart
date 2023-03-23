@@ -3,13 +3,13 @@ import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/shared/models/repositories_model.dart';
 
 class PublicRepositoriesModel extends RepositoriesModel {
-  PublicRepositoriesModel();
+  PublicRepositoriesModel(super.value);
 
   @override
   void populateListOfRepositories({required List<RepositoryEntity> list}) {
-    mainList.clear();
+    value.clear();
     for (final repositoryEntity in list) {
-      mainList.add(
+      value.add(
         PublicRepositoryModel(
           id: repositoryEntity.id,
           name: repositoryEntity.name,

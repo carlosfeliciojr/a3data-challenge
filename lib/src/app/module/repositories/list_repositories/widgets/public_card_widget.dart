@@ -28,7 +28,8 @@ class PublicCardWidget extends StatefulWidget {
   final int index;
   final int lastIndex;
   final bool isFavorite;
-  final Future<void> Function({required RepositoryModel repository}) onPressed;
+  final Future<void> Function({required PublicRepositoryModel repository})
+      onPressed;
 
   @override
   State<PublicCardWidget> createState() => _RepositoryCardWidgetState();

@@ -40,7 +40,7 @@ class _ListRepositoriesViewState extends State<FavoritesRepositoriesView> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return AnimatedBuilder(
-                animation: controller,
+                animation: controller.favoritesRepositories,
                 builder: (context, widget) {
                   if (controller.favoritesRepositories.isEmpty) {
                     return const WhitoutDataWidget();

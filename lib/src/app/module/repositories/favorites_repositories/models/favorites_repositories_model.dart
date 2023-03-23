@@ -3,14 +3,13 @@ import 'package:a3data_challenge/src/app/module/repositories/favorites_repositor
 import 'package:a3data_challenge/src/shared/models/repositories_model.dart';
 
 class FavoritesRepositoriesModel extends RepositoriesModel {
-  FavoritesRepositoriesModel._();
-  static final instance = FavoritesRepositoriesModel._();
+  FavoritesRepositoriesModel(super.value);
 
   @override
   void populateListOfRepositories({required List<RepositoryEntity> list}) {
-    mainList.clear();
+    value.clear();
     for (final repositoryEntity in list) {
-      mainList.add(
+      value.add(
         FavoriteRepositoryModel(
           id: repositoryEntity.id,
           name: repositoryEntity.name,
@@ -26,9 +25,14 @@ class FavoritesRepositoriesModel extends RepositoriesModel {
   }
 
   void removeFavoriteFromList({required FavoriteRepositoryModel unfavored}) {
-    mainList.removeWhere(
+    value.removeWhere(
       (favorite) => favorite.id == unfavored.id,
     );
+    notifyListeners();
+  }
+
+  void addFavoriteToList({required FavoriteRepositoryModel favorite}) {
+    value.add(favorite);
     notifyListeners();
   }
 }

@@ -59,7 +59,7 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return AnimatedBuilder(
-                animation: controller,
+                animation: controller.publicRepositories,
                 builder: (context, widget) {
                   if (controller.publicRepositories.isEmpty) {
                     return const WhitoutDataWidget();

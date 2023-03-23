@@ -1,4 +1,6 @@
+import 'package:a3data_challenge/src/app/module/repositories/favorites_repositories/models/favorite_repository_model.dart';
 import 'package:a3data_challenge/src/app/module/repositories/list_repositories/models/public_repositories_model.dart';
+import 'package:a3data_challenge/src/app/module/repositories/list_repositories/models/public_repository_model.dart';
 import 'package:a3data_challenge/src/app/module/repositories/list_repositories/models/user_model.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/domain/params/get_list_of_repositories_params.dart';
@@ -7,11 +9,10 @@ import 'package:a3data_challenge/src/domain/usecases/get_list_of_repositories_us
 import 'package:a3data_challenge/src/domain/usecases/get_list_of_user_repositories_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/set_repository_as_favorite_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/update_list_of_repositories_with_favorites_use_case.dart';
-import 'package:a3data_challenge/src/shared/models/favorites_repositories_model.dart';
+import 'package:a3data_challenge/src/app/module/repositories/favorites_repositories/models/favorites_repositories_model.dart';
 import 'package:a3data_challenge/src/shared/models/repository_model.dart';
-import 'package:flutter/foundation.dart';
 
-class RepositoriesController extends ChangeNotifier {
+class RepositoriesController {
   RepositoriesController({
     required this.getListOfRepositoriesUseCase,
     required this.getListOfUserRepositoriesUseCase,
@@ -28,8 +29,8 @@ class RepositoriesController extends ChangeNotifier {
   final UpdateListOfRepositoriesWithFavoritesUseCase
       updateListOfRepositoriesWithFavoritesUseCase;
 
-  final publicRepositories = PublicRepositoriesModel();
-  final favoritesRepositories = FavoritesRepositoriesModel.instance;
+  final publicRepositories = PublicRepositoriesModel([]);
+  final favoritesRepositories = FavoritesRepositoriesModel([]);
   final user = UserModel(username: '');
 
   Future<List<RepositoryModel>> getRepositories() async {
@@ -52,7 +53,6 @@ class RepositoriesController extends ChangeNotifier {
     publicRepositories.populateListOfRepositories(
       list: listRepositories,
     );
-    notifyListeners();
     return publicRepositories.list;
   }
 
@@ -70,7 +70,6 @@ class RepositoriesController extends ChangeNotifier {
       repositories: publicRepositories.list,
     );
     favoritesRepositories.populateListOfRepositories(list: listRepositories);
-    notifyListeners();
   }
 
   void onInputUserName(String username) {
@@ -81,16 +80,24 @@ class RepositoriesController extends ChangeNotifier {
   }
 
   Future<void> addReporitoryToFavorites({
-    required RepositoryModel repository,
+    required PublicRepositoryModel repository,
   }) async {
     publicRepositories.updateRepository(
       modifiedRepository: repository.copyWith(isFavorite: true),
     );
-    favoritesRepositories.updateRepository(modifiedRepository: repository);
+    favoritesRepositories.addFavoriteToList(
+      favorite: FavoriteRepositoryModel(
+        id: repository.id,
+        name: repository.name,
+        description: repository.description,
+        creationDate: repository.creationDate,
+        language: repository.language,
+        watchers: repository.watchers,
+      ),
+    );
 
     await setRepositoryAsFavoriteUseCase.call(
       newFavorite: repository,
     );
-    notifyListeners();
   }
 }
