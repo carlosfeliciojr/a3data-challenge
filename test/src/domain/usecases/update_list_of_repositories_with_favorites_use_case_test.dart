@@ -54,7 +54,7 @@ void main() {
               creationDate: DateTime(2015, 3, 6, 22, 54, 58),
               language: CodeLanguageEnum.dart,
               watchers: 151346,
-              isFavorite: false,
+              isFavorite: true,
             ),
           ];
 
@@ -78,6 +78,8 @@ void main() {
           expect(result.first.creationDate, isA<DateTime>());
           expect(result.first.language, isA<CodeLanguageEnum>());
           expect(result.first.watchers, isA<int>());
+          expect(result.first.isFavorite, isA<bool>());
+          expect(result.first.isFavorite, isTrue);
         },
       );
 
