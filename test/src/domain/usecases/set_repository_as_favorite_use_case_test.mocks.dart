@@ -3,12 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart'
-    as _i2;
+    as _i4;
 import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart'
-    as _i3;
+    as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -22,72 +22,45 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeRepositoryEntity_0 extends _i1.SmartFake
-    implements _i2.RepositoryEntity {
-  _FakeRepositoryEntity_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [RepositoryRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRepositoryRepository extends _i1.Mock
-    implements _i3.RepositoryRepository {
+    implements _i2.RepositoryRepository {
   @override
-  _i4.Future<List<_i2.RepositoryEntity>> getListFavoritesFromDatabase() =>
+  _i3.Future<List<_i4.RepositoryEntity>> getListFavoritesFromDatabase() =>
       (super.noSuchMethod(
         Invocation.method(
           #getListFavoritesFromDatabase,
           [],
         ),
-        returnValue: _i4.Future<List<_i2.RepositoryEntity>>.value(
-            <_i2.RepositoryEntity>[]),
-        returnValueForMissingStub: _i4.Future<List<_i2.RepositoryEntity>>.value(
-            <_i2.RepositoryEntity>[]),
-      ) as _i4.Future<List<_i2.RepositoryEntity>>);
+        returnValue: _i3.Future<List<_i4.RepositoryEntity>>.value(
+            <_i4.RepositoryEntity>[]),
+        returnValueForMissingStub: _i3.Future<List<_i4.RepositoryEntity>>.value(
+            <_i4.RepositoryEntity>[]),
+      ) as _i3.Future<List<_i4.RepositoryEntity>>);
   @override
-  _i4.Future<void> saveRepositoryInDatabase(
-          {required _i2.RepositoryEntity? newFavorite}) =>
+  _i3.Future<void> saveRepositoryInDatabase(
+          {required _i4.RepositoryEntity? newFavorite}) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveRepositoryInDatabase,
           [],
           {#newFavorite: newFavorite},
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
   @override
-  _i4.Future<_i2.RepositoryEntity> updateRepositoryInDatabase(
-          {required _i2.RepositoryEntity? modifiedFavorite}) =>
+  _i3.Future<_i4.RepositoryEntity?> updateRepositoryInDatabase(
+          {required _i4.RepositoryEntity? modifiedFavorite}) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateRepositoryInDatabase,
           [],
           {#modifiedFavorite: modifiedFavorite},
         ),
-        returnValue:
-            _i4.Future<_i2.RepositoryEntity>.value(_FakeRepositoryEntity_0(
-          this,
-          Invocation.method(
-            #updateRepositoryInDatabase,
-            [],
-            {#modifiedFavorite: modifiedFavorite},
-          ),
-        )),
-        returnValueForMissingStub:
-            _i4.Future<_i2.RepositoryEntity>.value(_FakeRepositoryEntity_0(
-          this,
-          Invocation.method(
-            #updateRepositoryInDatabase,
-            [],
-            {#modifiedFavorite: modifiedFavorite},
-          ),
-        )),
-      ) as _i4.Future<_i2.RepositoryEntity>);
+        returnValue: _i3.Future<_i4.RepositoryEntity?>.value(),
+        returnValueForMissingStub: _i3.Future<_i4.RepositoryEntity?>.value(),
+      ) as _i3.Future<_i4.RepositoryEntity?>);
 }
