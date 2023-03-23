@@ -14,7 +14,7 @@ class WithoutDataWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
             Text(
-              "Whitout repositories\n:(",
+              "Without repositories\n:(",
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.w600,
