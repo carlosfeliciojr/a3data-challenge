@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:a3data_challenge/src/app/module/repositories/list_repositories/models/repositories_model.dart';
 import 'package:a3data_challenge/src/app/module/repositories/list_repositories/models/repository_model.dart';
 import 'package:a3data_challenge/src/app/module/repositories/list_repositories/models/user_model.dart';
@@ -9,6 +7,7 @@ import 'package:a3data_challenge/src/domain/usecases/get_list_of_favorites_repos
 import 'package:a3data_challenge/src/domain/usecases/get_list_of_repositories_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/get_list_of_user_repositories_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/set_repository_as_favorite_use_case.dart';
+import 'package:a3data_challenge/src/domain/usecases/update_list_of_repositories_with_favorites_use_case.dart';
 import 'package:flutter/foundation.dart';
 
 class RepositoriesController extends ChangeNotifier {
@@ -17,6 +16,7 @@ class RepositoriesController extends ChangeNotifier {
     required this.getListOfUserRepositoriesUseCase,
     required this.setRepositoryAsFavoriteUseCase,
     required this.getListOfFavoritesRepositoriesUseCase,
+    required this.updateListOfRepositoriesWithFavoritesUseCase,
   });
 
   final GetListOfRepositoriesUseCase getListOfRepositoriesUseCase;
@@ -24,19 +24,33 @@ class RepositoriesController extends ChangeNotifier {
   final SetRepositoryAsFavoriteUseCase setRepositoryAsFavoriteUseCase;
   final GetListOfFavoritesRepositoriesUseCase
       getListOfFavoritesRepositoriesUseCase;
+  final UpdateListOfRepositoriesWithFavoritesUseCase
+      updateListOfRepositoriesWithFavoritesUseCase;
 
   final repositories = RepositoriesModel();
   final user = UserModel(username: '');
 
   Future<List<RepositoryModel>> getRepositories() async {
-    final result = await getListOfRepositoriesUseCase.call(
+    final localList = await getListOfFavoritesRepositoriesUseCase.call();
+    final responseList = await getListOfRepositoriesUseCase.call(
       params: GetListOfRepositoriesParams(
         language: CodeLanguageEnum.dart,
         page: 0,
         amountPerPage: 10,
       ),
     );
-    repositories.populateListOfRepositories(listOfRepositories: result);
+
+    final listRepositories = updateListOfRepositoriesWithFavoritesUseCase(
+      favorites: localList,
+      repositories: responseList,
+    );
+
+    listRepositories.addAll(responseList);
+    repositories.populateListOfRepositories(
+      listOfRepositories: responseList,
+    );
+    notifyListeners();
+
     return repositories.listOfRepositories;
   }
 
