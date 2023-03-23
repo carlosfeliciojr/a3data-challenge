@@ -14,7 +14,7 @@ class RepositoryCardWidget extends StatefulWidget {
     required this.language,
     required this.watchers,
     required this.lastIndex,
-    required this.isFavorite,
+    // required this.isFavorite,
     required this.onPressed,
   });
 
@@ -26,7 +26,7 @@ class RepositoryCardWidget extends StatefulWidget {
   final int watchers;
   final int index;
   final int lastIndex;
-  final bool isFavorite;
+  // final bool isFavorite;
   final Future<void> Function({required RepositoryModel repository}) onPressed;
 
   @override
@@ -169,47 +169,47 @@ class _RepositoryCardWidgetState extends State<RepositoryCardWidget>
                       ),
                     ),
                   ),
-                  if (!widget.isFavorite)
-                    ElevatedButton(
-                      style: const ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll(
-                          Color(0xff58A5FF),
-                        ),
-                        elevation: MaterialStatePropertyAll(0),
+                  // if (!widget.isFavorite)
+                  ElevatedButton(
+                    style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                        Color(0xff58A5FF),
                       ),
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      onPressed: () async => widget.onPressed(
-                        repository: RepositoryModel(
-                          id: widget.id,
-                          name: widget.name,
-                          description: widget.description,
-                          creationDate: widget.creationDate,
-                          language: widget.language,
-                          watchers: widget.watchers,
-                          isFavorite: widget.isFavorite,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: const [
-                            Icon(
-                              Icons.bookmark_add_outlined,
-                              color: Color(0xffC9D1D9),
-                              size: 28,
-                            ),
-                            Text(
-                              "Save\nRepo",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Color(0xffC9D1D9),
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
+                      elevation: MaterialStatePropertyAll(0),
+                    ),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    onPressed: () async => widget.onPressed(
+                      repository: RepositoryModel(
+                        id: widget.id,
+                        name: widget.name,
+                        description: widget.description,
+                        creationDate: widget.creationDate,
+                        language: widget.language,
+                        watchers: widget.watchers,
+                        // isFavorite: false,
                       ),
                     ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: const [
+                          Icon(
+                            Icons.bookmark_add_outlined,
+                            color: Color(0xffC9D1D9),
+                            size: 28,
+                          ),
+                          Text(
+                            "Save\nRepo",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Color(0xffC9D1D9),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

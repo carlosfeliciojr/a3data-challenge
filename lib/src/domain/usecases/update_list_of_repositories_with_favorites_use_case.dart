@@ -10,7 +10,7 @@ class UpdateListOfRepositoriesWithFavoritesUseCase {
     for (final repository in repositories) {
       for (final favorite in favorites) {
         if (repository.id == favorite.id) {
-          repository.isFavorite = true;
+          // repository.isFavorite = true;
         }
       }
     }

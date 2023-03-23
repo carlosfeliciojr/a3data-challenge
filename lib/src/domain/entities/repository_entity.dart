@@ -7,7 +7,7 @@ class RepositoryEntity {
   DateTime creationDate;
   CodeLanguageEnum language;
   int watchers;
-  bool isFavorite;
+  // bool isFavorite;
 
   RepositoryEntity({
     required this.id,
@@ -16,6 +16,6 @@ class RepositoryEntity {
     required this.creationDate,
     required this.language,
     required this.watchers,
-    required this.isFavorite,
+    // required this.isFavorite,
   });
 }

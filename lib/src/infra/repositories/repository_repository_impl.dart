@@ -27,7 +27,7 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
             creationDate: DateTime.parse(favorite["creationDate"]).toLocal(),
             language: CodeLanguageEnum.fromText(text: favorite["language"]),
             watchers: favorite["watchers"],
-            isFavorite: favorite["isFavorite"],
+            // isFavorite: favorite["isFavorite"],
           ),
         )
         .toList();
@@ -75,7 +75,7 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
             "creationDate": favorite.creationDate.toIso8601String(),
             "language": favorite.language.text,
             "watchers": favorite.watchers,
-            "isFavorite": favorite.isFavorite,
+            // "isFavorite": favorite.isFavorite,
           },
         )
         .toList();

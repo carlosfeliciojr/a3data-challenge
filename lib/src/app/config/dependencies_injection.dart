@@ -68,9 +68,9 @@ void _registerUseCases() {
       repository: getIt.get<RepositoryRepository>(),
     ),
   );
-  getIt.registerSingleton<UpdateListOfRepositoriesWithFavoritesUseCase>(
-    UpdateListOfRepositoriesWithFavoritesUseCase(),
-  );
+  // getIt.registerLazySingleton<UpdateListOfRepositoriesWithFavoritesUseCase>(
+  //   () => UpdateListOfRepositoriesWithFavoritesUseCase(),
+  // );
 }
 
 void _registerControllers() {
@@ -83,8 +83,8 @@ void _registerControllers() {
           getIt.get<SetRepositoryAsFavoriteUseCase>(),
       getListOfFavoritesRepositoriesUseCase:
           getIt.get<GetListOfFavoritesRepositoriesUseCase>(),
-      updateListOfRepositoriesWithFavoritesUseCase:
-          getIt.get<UpdateListOfRepositoriesWithFavoritesUseCase>(),
+      // updateListOfRepositoriesWithFavoritesUseCase:
+      //     getIt.get<UpdateListOfRepositoriesWithFavoritesUseCase>(),
     ),
   );
 }

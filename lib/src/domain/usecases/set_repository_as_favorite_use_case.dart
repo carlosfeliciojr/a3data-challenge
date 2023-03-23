@@ -34,13 +34,15 @@ class SetRepositoryAsFavoriteUseCase {
     required RepositoryEntity newFavorite,
   }) {
     return listFavorites.any((favorite) =>
-        favorite.name == newFavorite.name &&
-        favorite.id == newFavorite.id &&
-        favorite.description == newFavorite.description &&
-        favorite.creationDate == newFavorite.creationDate &&
-        favorite.language == newFavorite.language &&
-        favorite.watchers == newFavorite.watchers &&
-        favorite.isFavorite == newFavorite.isFavorite);
+            favorite.name == newFavorite.name &&
+            favorite.id == newFavorite.id &&
+            favorite.description == newFavorite.description &&
+            favorite.creationDate == newFavorite.creationDate &&
+            favorite.language == newFavorite.language &&
+            favorite.watchers == newFavorite.watchers
+        // &&
+        // favorite.isFavorite == newFavorite.isFavorite
+        );
   }
 
   bool _favoriteNeedsUpdate({

@@ -40,7 +40,7 @@ class RepositoryServicesImpl implements RepositoryServices {
           creationDate: DateTime.parse(repository["created_at"]).toLocal(),
           language: CodeLanguageEnum.fromText(text: repository["language"]),
           watchers: repository["watchers"] as int,
-          isFavorite: repository["isFavorite"] as bool,
+          // isFavorite: repository["isFavorite"] as bool,
         );
         return repositoryEntity;
       },
@@ -70,7 +70,7 @@ class RepositoryServicesImpl implements RepositoryServices {
             language:
                 CodeLanguageEnum.fromText(text: repository["language"] ?? ''),
             watchers: repository["watchers"] as int,
-            isFavorite: repository["isFavorite"],
+            // isFavorite: repository["isFavorite"],
           );
           return repositoryEntity;
         },

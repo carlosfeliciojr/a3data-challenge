@@ -16,7 +16,7 @@ class RepositoriesController extends ChangeNotifier {
     required this.getListOfUserRepositoriesUseCase,
     required this.setRepositoryAsFavoriteUseCase,
     required this.getListOfFavoritesRepositoriesUseCase,
-    required this.updateListOfRepositoriesWithFavoritesUseCase,
+    // required this.updateListOfRepositoriesWithFavoritesUseCase,
   });
 
   final GetListOfRepositoriesUseCase getListOfRepositoriesUseCase;
@@ -24,14 +24,14 @@ class RepositoriesController extends ChangeNotifier {
   final SetRepositoryAsFavoriteUseCase setRepositoryAsFavoriteUseCase;
   final GetListOfFavoritesRepositoriesUseCase
       getListOfFavoritesRepositoriesUseCase;
-  final UpdateListOfRepositoriesWithFavoritesUseCase
-      updateListOfRepositoriesWithFavoritesUseCase;
+  // final UpdateListOfRepositoriesWithFavoritesUseCase
+  //     updateListOfRepositoriesWithFavoritesUseCase;
 
   final repositories = RepositoriesModel();
   final user = UserModel(username: '');
 
   Future<List<RepositoryModel>> getRepositories() async {
-    final localList = await getListOfFavoritesRepositoriesUseCase.call();
+    // final localList = await getListOfFavoritesRepositoriesUseCase.call();
     final responseList = await getListOfRepositoriesUseCase.call(
       params: GetListOfRepositoriesParams(
         language: CodeLanguageEnum.dart,
@@ -39,17 +39,17 @@ class RepositoriesController extends ChangeNotifier {
         amountPerPage: 10,
       ),
     );
+    repositories.populateListOfRepositories(listOfRepositories: responseList);
+    // final listRepositories = updateListOfRepositoriesWithFavoritesUseCase(
+    //   favorites: localList,
+    //   repositories: responseList,
+    // );
 
-    final listRepositories = updateListOfRepositoriesWithFavoritesUseCase(
-      favorites: localList,
-      repositories: responseList,
-    );
-
-    listRepositories.addAll(responseList);
-    repositories.populateListOfRepositories(
-      listOfRepositories: responseList,
-    );
-    notifyListeners();
+    // listRepositories.addAll(responseList);
+    // repositories.populateListOfRepositories(
+    //   listOfRepositories: responseList,
+    // );
+    // notifyListeners();
 
     return repositories.listOfRepositories;
   }

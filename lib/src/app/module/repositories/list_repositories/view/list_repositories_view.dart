@@ -73,7 +73,7 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
                         language: repository.language,
                         creationDate: repository.creationDate,
                         watchers: repository.watchers,
-                        isFavorite: repository.isFavorite,
+                        // isFavorite: repository.isFavorite,
                         onPressed: controller.addReporitoryToFavorites,
                       );
                     },
