@@ -1,4 +1,6 @@
 import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
+import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
+import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/infra/repositories/repository_repository_impl.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -19,13 +21,13 @@ void main() {
         'Success',
         () async {
           final getItemData = {
-            KeysConstants.listFavoritesKey: [
+            KeysConstants.itemsKey: [
               {
                 "id": "31792824",
                 "name": "flutter",
                 "description":
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "created_at": "2015-03-06T22:54:58.000",
+                "creationDate": "2015-03-06T22:54:58.000",
                 "language": "Dart",
                 "watchers": 151346,
               }
@@ -38,28 +40,26 @@ void main() {
             (_) async => getItemData,
           );
 
-          final setItemData = {
-            KeysConstants.listFavoritesKey: [
-              {
-                "id": "31792824",
-                "name": "flutter",
-                "description":
-                    "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "created_at": "2015-03-06T22:54:58.000",
-                "language": "Dart",
-                "watchers": 151346,
-              },
-              {
-                "id": "31792824",
-                "name": "flutter",
-                "description":
-                    "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "created_at": "2015-03-06T22:54:58.000",
-                "language": "Dart",
-                "watchers": 151346,
-              }
-            ]
-          };
+          final setItemData = [
+            {
+              "id": "31792824",
+              "name": "flutter",
+              "description":
+                  "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+              "creationDate": "2015-03-06T22:54:58.000",
+              "language": "Dart",
+              "watchers": 151346,
+            },
+            {
+              "id": "31792824",
+              "name": "flutter",
+              "description":
+                  "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+              "creationDate": "2015-03-06T22:54:58.000",
+              "language": "Dart",
+              "watchers": 151346,
+            }
+          ];
 
           when(
             database.setItem(key: KeysConstants.itemsKey, data: setItemData),
@@ -67,15 +67,15 @@ void main() {
             (_) async {},
           );
 
-          final newFavorite = {
-            "id": "31792824",
-            "name": "flutter",
-            "description":
+          final newFavorite = RepositoryEntity(
+            id: "31792824",
+            name: "flutter",
+            description:
                 "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-            "created_at": "2015-03-06T22:54:58.000",
-            "language": "Dart",
-            "watchers": 151346,
-          };
+            creationDate: DateTime(2015, 3, 6, 22, 54, 58),
+            language: CodeLanguageEnum.dart,
+            watchers: 151346,
+          );
 
           await repository.saveRepositoryInDatabase(
             newFavorite: newFavorite,
@@ -93,13 +93,13 @@ void main() {
         'Success',
         () async {
           final databaseAnwser = {
-            KeysConstants.listFavoritesKey: [
+            KeysConstants.itemsKey: [
               {
                 "id": "31792824",
                 "name": "flutter",
                 "description":
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "created_at": "2015-03-06T22:54:58.000",
+                "creationDate": "2015-03-06T22:54:58.000",
                 "language": "Dart",
                 "watchers": 200000,
               },
@@ -115,14 +115,14 @@ void main() {
           final result = await repository.getListFavoritesFromDatabase();
 
           expect(result, isNotNull);
-          expect(result, isA<List<Map<String, dynamic>>>());
-          expect(result.first, isA<Map<String, dynamic>>());
-          expect(result.first["id"], isA<String>());
-          expect(result.first["name"], isA<String>());
-          expect(result.first["description"], isA<String>());
-          expect(result.first["created_at"], isA<String>());
-          expect(result.first["language"], isA<String>());
-          expect(result.first["watchers"], isA<int>());
+          expect(result, isA<List<RepositoryEntity>>());
+          expect(result.first, isA<RepositoryEntity>());
+          expect(result.first.id, isA<String>());
+          expect(result.first.name, isA<String>());
+          expect(result.first.description, isA<String>());
+          expect(result.first.creationDate, isA<DateTime>());
+          expect(result.first.language, isA<CodeLanguageEnum>());
+          expect(result.first.watchers, isA<int>());
         },
       );
     });
@@ -130,16 +130,6 @@ void main() {
       test(
         'Nothing happen',
         () async {
-          final favorite = {
-            "id": "31792824",
-            "name": "flutter",
-            "description":
-                "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-            "created_at": "2015-03-06T22:54:58.000",
-            "language": "Dart",
-            "watchers": 200000,
-          };
-
           final databaseAnwser = {
             KeysConstants.listFavoritesKey: [
               {
@@ -147,12 +137,22 @@ void main() {
                 "name": "flutter",
                 "description":
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "created_at": "2015-03-06T22:54:58.000",
+                "creationDate": "2015-03-06T22:54:58.000",
                 "language": "Dart",
                 "watchers": 200000,
               },
             ]
           };
+
+          final favorite = RepositoryEntity(
+            id: "31792824",
+            name: "flutter",
+            description:
+                "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+            creationDate: DateTime(2015, 3, 6, 22, 54, 58),
+            language: CodeLanguageEnum.dart,
+            watchers: 200000,
+          );
 
           when(
             database.getItem(key: KeysConstants.itemsKey),
@@ -161,12 +161,10 @@ void main() {
           );
 
           final result = await repository.updateRepositoryInDatabase(
-            favorite: favorite,
+            modifiedFavorite: favorite,
           );
 
-          expect(result, isNotNull);
-          expect(result, isA<Map<String, dynamic>>());
-          expect(result, equals(favorite));
+          expect(result, isNull);
         },
       );
     });

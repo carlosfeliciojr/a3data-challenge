@@ -8,12 +8,11 @@ class SetRepositoryAsFavoriteUseCase {
   final RepositoryRepository repository;
 
   Future<StatusEnum> call({
-    required RepositoryEntity repository,
+    required RepositoryEntity newFavorite,
   }) async {
-    final listFavorites = await this.repository.getListFavoritesFromDatabase();
-    final newFavorite = _convertRepositoryEntityToMap(repository: repository);
+    final listFavorites = await repository.getListFavoritesFromDatabase();
 
-    if (_favoriteAlreadyExist(
+    if (_newFavoriteAlreadyExist(
       listFavorites: listFavorites,
       newFavorite: newFavorite,
     )) {
@@ -22,58 +21,31 @@ class SetRepositoryAsFavoriteUseCase {
       listFavorites: listFavorites,
       newFavorite: newFavorite,
     )) {
-      this.repository.updateRepositoryInDatabase(favorite: newFavorite);
+      repository.updateRepositoryInDatabase(modifiedFavorite: newFavorite);
       return StatusEnum.updated;
     } else {
-      await this.repository.saveRepositoryInDatabase(newFavorite: newFavorite);
+      await repository.saveRepositoryInDatabase(newFavorite: newFavorite);
       return StatusEnum.success;
     }
   }
 
-  Map<String, dynamic> _convertRepositoryEntityToMap({
-    required RepositoryEntity repository,
+  bool _newFavoriteAlreadyExist({
+    required List<RepositoryEntity> listFavorites,
+    required RepositoryEntity newFavorite,
   }) {
-    final newFavorite = <String, dynamic>{
-      "id": repository.id,
-      "name": repository.name,
-      "description": repository.description,
-      "created_at": repository.creationDate.toIso8601String(),
-      "language": repository.language.text,
-      "watchers": repository.watchers,
-    };
-    return newFavorite;
-  }
-
-  _favoriteAlreadyExist({
-    required List<Map<String, dynamic>> listFavorites,
-    required Map<String, dynamic> newFavorite,
-  }) {
-    return listFavorites.any(
-      (favorite) {
-        if (favorite.length != newFavorite.length) {
-          return false;
-        }
-
-        for (final key in favorite.keys) {
-          if (!newFavorite.containsKey(key) ||
-              favorite[key] != newFavorite[key]) {
-            return false;
-          }
-        }
-
-        return true;
-      },
-    );
+    return listFavorites.any((favorite) =>
+        favorite.name == newFavorite.name &&
+        favorite.id == newFavorite.id &&
+        favorite.description == newFavorite.description &&
+        favorite.creationDate == newFavorite.creationDate &&
+        favorite.language == newFavorite.language &&
+        favorite.watchers == newFavorite.watchers);
   }
 
   bool _favoriteNeedUpdate({
-    required List<Map<String, dynamic>> listFavorites,
-    required Map<String, dynamic> newFavorite,
+    required List<RepositoryEntity> listFavorites,
+    required RepositoryEntity newFavorite,
   }) {
-    return listFavorites.any(
-      (favorite) {
-        return favorite["id"] == newFavorite["id"];
-      },
-    );
+    return listFavorites.any((favorite) => favorite.id == newFavorite.id);
   }
 }

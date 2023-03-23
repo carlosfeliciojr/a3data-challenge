@@ -1,11 +1,13 @@
+import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
+
 abstract class RepositoryRepository {
-  Future<List<Map<String, dynamic>>> getListFavoritesFromDatabase();
+  Future<List<RepositoryEntity>> getListFavoritesFromDatabase();
 
   Future<void> saveRepositoryInDatabase({
-    required Map<String, dynamic> newFavorite,
+    required RepositoryEntity newFavorite,
   });
 
-  Future<Map<String, dynamic>> updateRepositoryInDatabase({
-    required Map<String, dynamic> favorite,
+  Future<RepositoryEntity?> updateRepositoryInDatabase({
+    required RepositoryEntity modifiedFavorite,
   });
 }
