@@ -1,6 +1,6 @@
 import 'package:a3data_challenge/src/app/module/repositories/favorites_repositories/controller/favorites_repositories_controller.dart';
 import 'package:a3data_challenge/src/app/module/repositories/favorites_repositories/widgets/favorite_card_widget.dart';
-import 'package:a3data_challenge/src/app/module/repositories/list_repositories/widgets/wihtout_data_widget.dart';
+import 'package:a3data_challenge/src/app/module/repositories/list_repositories/widgets/whitout_data_widget.dart';
 import 'package:flutter/material.dart';
 
 class FavoritesRepositoriesView extends StatefulWidget {
@@ -43,7 +43,7 @@ class _ListRepositoriesViewState extends State<FavoritesRepositoriesView> {
                 animation: controller,
                 builder: (context, widget) {
                   if (controller.favoritesRepositories.isEmpty) {
-                    return const WithoutDataWidget();
+                    return const WhitoutDataWidget();
                   }
                   return ListView.builder(
                     itemCount: controller.favoritesRepositories.lenght,

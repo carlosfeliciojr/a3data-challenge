@@ -57,13 +57,17 @@ class RepositoriesController extends ChangeNotifier {
   }
 
   Future<void> getUserRepositories({required String username}) async {
-    final localList = await getListOfFavoritesRepositoriesUseCase.call();
-    final responseList = await getListOfUserRepositoriesUseCase.call(
-      username: username,
+    favoritesRepositories.populateListOfRepositories(
+      list: await getListOfFavoritesRepositoriesUseCase.call(),
+    );
+    publicRepositories.populateListOfRepositories(
+      list: await getListOfUserRepositoriesUseCase.call(
+        username: username,
+      ),
     );
     final listRepositories = updateListOfRepositoriesWithFavoritesUseCase(
-      favorites: localList,
-      repositories: responseList,
+      favorites: favoritesRepositories.list,
+      repositories: publicRepositories.list,
     );
     favoritesRepositories.populateListOfRepositories(list: listRepositories);
     notifyListeners();
@@ -82,6 +86,8 @@ class RepositoriesController extends ChangeNotifier {
     publicRepositories.updateRepository(
       modifiedRepository: repository.copyWith(isFavorite: true),
     );
+    favoritesRepositories.updateRepository(modifiedRepository: repository);
+
     await setRepositoryAsFavoriteUseCase.call(
       newFavorite: repository,
     );

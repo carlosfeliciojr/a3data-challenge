@@ -1,7 +1,8 @@
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/shared/models/repository_model.dart';
+import 'package:flutter/foundation.dart';
 
-abstract class RepositoriesModel {
+abstract class RepositoriesModel extends ChangeNotifier {
   final mainList = <RepositoryModel>[];
 
   List<RepositoryModel> get list {
@@ -25,6 +26,7 @@ abstract class RepositoriesModel {
     if (repositoryIndex != -1) {
       mainList[repositoryIndex] = modifiedRepository;
     }
+    notifyListeners();
   }
 
   void populateListOfRepositories({

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class WithoutDataWidget extends StatelessWidget {
-  const WithoutDataWidget({
+class WhitoutDataWidget extends StatelessWidget {
+  const WhitoutDataWidget({
     super.key,
   });
 

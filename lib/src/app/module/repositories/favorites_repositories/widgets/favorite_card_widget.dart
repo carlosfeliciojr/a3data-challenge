@@ -174,7 +174,7 @@ class _RepositoryCardWidgetState extends State<FavoriteCardWidget>
                     ElevatedButton(
                       style: const ButtonStyle(
                         backgroundColor: MaterialStatePropertyAll(
-                          Color(0xff58A5FF),
+                          Color(0xffDA3633),
                         ),
                         elevation: MaterialStatePropertyAll(0),
                       ),
@@ -191,7 +191,10 @@ class _RepositoryCardWidgetState extends State<FavoriteCardWidget>
                         ),
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 4,
+                          horizontal: 0,
+                        ),
                         child: Column(
                           children: const [
                             Icon(
@@ -200,12 +203,13 @@ class _RepositoryCardWidgetState extends State<FavoriteCardWidget>
                               size: 28,
                             ),
                             Text(
-                              "Save\nRepo",
+                              "Remove\nRepo",
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 12,
                                 color: Color(0xffC9D1D9),
                                 fontWeight: FontWeight.w500,
                               ),
+                              textAlign: TextAlign.center,
                             ),
                           ],
                         ),

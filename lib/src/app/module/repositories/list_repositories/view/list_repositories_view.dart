@@ -3,7 +3,7 @@ import 'package:a3data_challenge/src/app/module/repositories/list_repositories/c
 import 'package:a3data_challenge/src/app/module/repositories/list_repositories/widgets/favorites_repositories_widget.dart';
 import 'package:a3data_challenge/src/app/module/repositories/list_repositories/widgets/public_card_widget.dart';
 import 'package:a3data_challenge/src/app/module/repositories/list_repositories/widgets/search_user_widget.dart';
-import 'package:a3data_challenge/src/app/module/repositories/list_repositories/widgets/wihtout_data_widget.dart';
+import 'package:a3data_challenge/src/app/module/repositories/list_repositories/widgets/whitout_data_widget.dart';
 import 'package:flutter/material.dart';
 
 class ListRepositoriesView extends StatefulWidget {
@@ -38,7 +38,7 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
         ),
         actions: [
           AnimatedBuilder(
-            animation: controller,
+            animation: controller.favoritesRepositories,
             builder: (context, snapshot) {
               return FavoritesRepositoriesWidget(
                 count: controller.favoritesRepositories.lenght,
@@ -62,7 +62,7 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
                 animation: controller,
                 builder: (context, widget) {
                   if (controller.publicRepositories.isEmpty) {
-                    return const WithoutDataWidget();
+                    return const WhitoutDataWidget();
                   }
                   return ListView.builder(
                     itemCount: controller.publicRepositories.lenght,

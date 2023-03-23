@@ -18,7 +18,7 @@ class CounterFavoritesWidget extends StatelessWidget {
           width: 18,
           height: 18,
           decoration: BoxDecoration(
-            color: const Color(0xffF78166),
+            color: const Color(0xffDA3633),
             borderRadius: BorderRadius.circular(9),
           ),
           child: Center(

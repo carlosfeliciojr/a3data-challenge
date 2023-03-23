@@ -22,11 +22,13 @@ class FavoritesRepositoriesModel extends RepositoriesModel {
         ),
       );
     }
+    notifyListeners();
   }
 
   void removeFavoriteFromList({required FavoriteRepositoryModel unfavored}) {
     mainList.removeWhere(
       (favorite) => favorite.id == unfavored.id,
     );
+    notifyListeners();
   }
 }
