@@ -22,7 +22,7 @@ void main() {
         test(
           'Success',
           () async {
-            final repositoryEntity = RepositoryEntity(
+            final newFavorite = RepositoryEntity(
               id: "31792824",
               name: "flutter",
               description:
@@ -32,16 +32,6 @@ void main() {
               watchers: 151346,
             );
 
-            final newFavorite = {
-              "id": "31792824",
-              "name": "flutter",
-              "description":
-                  "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-              "created_at": "2015-03-06T22:54:58.000",
-              "language": "Dart",
-              "watchers": 151346,
-            };
-
             when(
               repository.saveRepositoryInDatabase(newFavorite: newFavorite),
             ).thenAnswer(
@@ -49,7 +39,7 @@ void main() {
             );
 
             final result = await setRepositoryAsFavoriteUseCase.call(
-              repository: repositoryEntity,
+              newFavorite: newFavorite,
             );
 
             expect(result, isNotNull);
@@ -72,15 +62,15 @@ void main() {
             );
 
             final database = [
-              {
-                "id": "31792824",
-                "name": "flutter",
-                "description":
+              RepositoryEntity(
+                id: "31792824",
+                name: "flutter",
+                description:
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "created_at": "2015-03-06T22:54:58.000",
-                "language": "Dart",
-                "watchers": 200000,
-              }
+                creationDate: DateTime(2015, 3, 6, 22, 54, 58),
+                language: CodeLanguageEnum.dart,
+                watchers: 200000,
+              )
             ];
 
             when(
@@ -90,7 +80,7 @@ void main() {
             );
 
             final result = await setRepositoryAsFavoriteUseCase.call(
-              repository: repositoryEntity,
+              newFavorite: repositoryEntity,
             );
 
             expect(result, isNotNull);
@@ -113,15 +103,15 @@ void main() {
             );
 
             final databaseAnwser = [
-              {
-                "id": "31792824",
-                "name": "flutter",
-                "description":
+              RepositoryEntity(
+                id: "31792824",
+                name: "flutter",
+                description:
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
-                "created_at": "2015-03-06T22:54:58.000",
-                "language": "Dart",
-                "watchers": 151346,
-              },
+                creationDate: DateTime(2015, 3, 6, 22, 54, 58),
+                language: CodeLanguageEnum.dart,
+                watchers: 151346,
+              ),
             ];
 
             when(
@@ -131,7 +121,7 @@ void main() {
             );
 
             final result = await setRepositoryAsFavoriteUseCase.call(
-              repository: repositoryEntity,
+              newFavorite: repositoryEntity,
             );
 
             expect(result, isNotNull);

@@ -25,7 +25,7 @@ class SharedPreferencesDatabase implements Database {
   @override
   Future<void> setItem({
     required String key,
-    required Map<String, dynamic> data,
+    required dynamic data,
   }) async {
     final jsonString = jsonEncode(data);
     await sharedPreferences.setString(key, jsonString);

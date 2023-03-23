@@ -46,7 +46,7 @@ class MockDatabase extends _i1.Mock implements _i2.Database {
   @override
   _i3.Future<void> setItem({
     required String? key,
-    required Map<String, dynamic>? data,
+    required dynamic data,
   }) =>
       (super.noSuchMethod(
         Invocation.method(

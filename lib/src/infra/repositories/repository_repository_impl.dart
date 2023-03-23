@@ -1,6 +1,9 @@
 import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
+import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
+import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart';
 import 'package:a3data_challenge/src/infra/data_source/database.dart';
+import 'package:a3data_challenge/src/shared/utils/map_tricks.dart';
 
 class RepositoryRepositoryImpl implements RepositoryRepository {
   final Database database;
@@ -8,43 +11,65 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
   RepositoryRepositoryImpl({required this.database});
 
   @override
-  Future<List<Map<String, dynamic>>> getListFavoritesFromDatabase() async {
+  Future<List<RepositoryEntity>> getListFavoritesFromDatabase() async {
     final favoritesDatabase = await database.getItem(
-          key: KeysConstants.itemsKey,
-        ) ??
-        {
-          KeysConstants.listFavoritesKey: [],
-        };
-    final listFavorites = List<Map<String, dynamic>>.from(
-      favoritesDatabase[KeysConstants.listFavoritesKey],
+      key: KeysConstants.itemsKey,
     );
-    return listFavorites;
+    final listFavorites = MapTricks.convertDynamicToListMap(
+      favoritesDatabase?[KeysConstants.itemsKey],
+    );
+    return listFavorites
+        .map(
+          (favorite) => RepositoryEntity(
+            id: favorite["id"],
+            name: favorite["name"],
+            description: favorite["description"],
+            creationDate: DateTime.parse(favorite["creationDate"]).toLocal(),
+            language: CodeLanguageEnum.fromText(text: favorite["language"]),
+            watchers: favorite["watchers"],
+          ),
+        )
+        .toList();
   }
 
   @override
-  Future<Map<String, dynamic>> updateRepositoryInDatabase({
-    required Map<String, dynamic> favorite,
+  Future<RepositoryEntity?> updateRepositoryInDatabase({
+    required RepositoryEntity modifiedFavorite,
   }) async {
     final listFavorites = await getListFavoritesFromDatabase();
     final favoriteIndex = listFavorites.indexWhere(
-      (repository) => repository["id"] == favorite["id"],
+      (repository) => repository.id == modifiedFavorite.id,
     );
-    listFavorites[favoriteIndex] = favorite;
+    if (favoriteIndex != -1) {
+      listFavorites[favoriteIndex] = modifiedFavorite;
 
-    await saveRepositoryInDatabase(newFavorite: listFavorites[favoriteIndex]);
+      await saveRepositoryInDatabase(newFavorite: listFavorites[favoriteIndex]);
 
-    return favorite;
+      return modifiedFavorite;
+    }
   }
 
   @override
   Future<void> saveRepositoryInDatabase({
-    required Map<String, dynamic> newFavorite,
+    required RepositoryEntity newFavorite,
   }) async {
     final listFavorites = await getListFavoritesFromDatabase();
     listFavorites.add(newFavorite);
+    final listFavoritesMap = listFavorites
+        .map(
+          (favorite) => <String, dynamic>{
+            "id": favorite.id,
+            "name": favorite.name,
+            "description": favorite.description,
+            "creationDate": favorite.creationDate.toIso8601String(),
+            "language": favorite.language.text,
+            "watchers": favorite.watchers,
+          },
+        )
+        .toList();
     await database.setItem(
       key: KeysConstants.itemsKey,
-      data: {KeysConstants.listFavoritesKey: listFavorites},
+      data: listFavoritesMap,
     );
   }
 }

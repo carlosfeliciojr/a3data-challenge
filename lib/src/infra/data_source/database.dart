@@ -5,7 +5,7 @@ abstract class Database {
 
   Future<void> setItem({
     required String key,
-    required Map<String, dynamic> data,
+    required dynamic data,
   });
 
   Future<void> removeItem({required String key});

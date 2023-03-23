@@ -11,9 +11,9 @@ import 'get_list_of_repositories_use_case_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<RepositoryServices>()])
 void main() {
-  final RepositoryServices repository = MockRepositoryServices();
+  final RepositoryServices services = MockRepositoryServices();
   final GetListOfUserRepositoriesUseCase getListOfUserRepositoriesUseCase =
-      GetListOfUserRepositoriesUseCase(repository: repository);
+      GetListOfUserRepositoriesUseCase(services: services);
 
   group(
     'GetListOfUserRepositoriesUseCase',
@@ -40,7 +40,7 @@ void main() {
           ];
 
           when(
-            repository.getListOfUserRepositories(username: 'carlosfeliciojr'),
+            services.getListOfUserRepositories(username: 'carlosfeliciojr'),
           ).thenAnswer(
             (_) async => expectedAnswer,
           );
@@ -66,7 +66,7 @@ void main() {
           final expectedAnswer = <RepositoryEntity>[];
 
           when(
-            repository.getListOfRepositories(params: params),
+            services.getListOfRepositories(params: params),
           ).thenAnswer(
             (_) async => expectedAnswer,
           );
