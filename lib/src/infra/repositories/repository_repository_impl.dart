@@ -49,7 +49,9 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
           listFavorites[favoriteIndex].creationDate !=
               modifiedFavorite.creationDate ||
           listFavorites[favoriteIndex].language != modifiedFavorite.language ||
-          listFavorites[favoriteIndex].watchers != modifiedFavorite.watchers;
+          listFavorites[favoriteIndex].watchers != modifiedFavorite.watchers ||
+          listFavorites[favoriteIndex].isFavorite !=
+              modifiedFavorite.isFavorite;
       if (needUpdate) {
         await saveRepositoryInDatabase(
             newFavorite: listFavorites[favoriteIndex]);
