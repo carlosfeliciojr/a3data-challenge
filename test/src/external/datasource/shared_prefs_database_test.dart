@@ -1,4 +1,4 @@
-import 'package:a3data_challenge/src/external/datasource/shared_preferences_database.dart';
+import 'package:a3data_challenge/src/external/drivers/shared_preferences_database.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
