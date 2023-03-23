@@ -1,3 +1,4 @@
+import 'package:a3data_challenge/src/core/enums/status_enum.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 
 abstract class RepositoryRepository {
@@ -9,5 +10,9 @@ abstract class RepositoryRepository {
 
   Future<RepositoryEntity?> updateRepositoryInDatabase({
     required RepositoryEntity modifiedFavorite,
+  });
+
+  Future<StatusEnum> removeFavoriteInDatabase({
+    required RepositoryEntity unfavored,
   });
 }

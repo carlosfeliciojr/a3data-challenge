@@ -1,4 +1,7 @@
+import 'package:a3data_challenge/src/app/module/repositories/favorites_repositories/controller/favorites_repositories_controller.dart';
+import 'package:a3data_challenge/src/app/module/repositories/favorites_repositories/view/favorite_repositories_view.dart';
 import 'package:a3data_challenge/src/app/module/repositories/list_repositories/controller/repositories_controller.dart';
+import 'package:a3data_challenge/src/app/module/repositories/list_repositories/view/list_repositories_view.dart';
 import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart';
 import 'package:a3data_challenge/src/domain/services/repository_services.dart';
 import 'package:a3data_challenge/src/domain/usecases/get_list_of_favorites_repositories_use_case.dart';
@@ -24,6 +27,7 @@ class DependenciesInjection {
     _registerRepositories();
     _registerUseCases();
     _registerControllers();
+    _registerViews();
   }
 }
 
@@ -85,6 +89,26 @@ void _registerControllers() {
           getIt.get<GetListOfFavoritesRepositoriesUseCase>(),
       updateListOfRepositoriesWithFavoritesUseCase:
           getIt.get<UpdateListOfRepositoriesWithFavoritesUseCase>(),
+    ),
+  );
+
+  getIt.registerFactory<FavoritesRepositoriesController>(
+    () => FavoritesRepositoriesController(
+      getListOfFavoritesRepositoriesUseCase:
+          getIt.get<GetListOfFavoritesRepositoriesUseCase>(),
+    ),
+  );
+}
+
+void _registerViews() {
+  getIt.registerFactory(
+    () => ListRepositoriesView(
+      controller: getIt.get<RepositoriesController>(),
+    ),
+  );
+  getIt.registerFactory(
+    () => FavoritesRepositoriesView(
+      controller: getIt.get<FavoritesRepositoriesController>(),
     ),
   );
 }

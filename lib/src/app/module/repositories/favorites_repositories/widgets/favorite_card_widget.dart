@@ -1,10 +1,10 @@
-import 'package:a3data_challenge/src/app/module/repositories/list_repositories/models/repository_model.dart';
+import 'package:a3data_challenge/src/app/module/repositories/favorites_repositories/models/favorite_repository_model.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class RepositoryCardWidget extends StatefulWidget {
-  const RepositoryCardWidget({
+class FavoriteCardWidget extends StatefulWidget {
+  const FavoriteCardWidget({
     super.key,
     required this.id,
     required this.index,
@@ -27,13 +27,14 @@ class RepositoryCardWidget extends StatefulWidget {
   final int index;
   final int lastIndex;
   final bool isFavorite;
-  final Future<void> Function({required RepositoryModel repository}) onPressed;
+  final Future<void> Function({required FavoriteRepositoryModel unfavored})
+      onPressed;
 
   @override
-  State<RepositoryCardWidget> createState() => _RepositoryCardWidgetState();
+  State<FavoriteCardWidget> createState() => _RepositoryCardWidgetState();
 }
 
-class _RepositoryCardWidgetState extends State<RepositoryCardWidget>
+class _RepositoryCardWidgetState extends State<FavoriteCardWidget>
     with TickerProviderStateMixin {
   EdgeInsets cardPadding() {
     if (widget.index == 0) {
@@ -179,7 +180,7 @@ class _RepositoryCardWidgetState extends State<RepositoryCardWidget>
                       ),
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       onPressed: () async => widget.onPressed(
-                        repository: RepositoryModel(
+                        unfavored: FavoriteRepositoryModel(
                           id: widget.id,
                           name: widget.name,
                           description: widget.description,

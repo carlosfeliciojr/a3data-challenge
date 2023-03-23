@@ -1,8 +1,9 @@
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
+import 'package:a3data_challenge/src/shared/models/repository_model.dart';
 
-class RepositoryModel extends RepositoryEntity {
-  RepositoryModel({
+class FavoriteRepositoryModel extends RepositoryModel {
+  FavoriteRepositoryModel({
     required super.id,
     required super.name,
     required super.description,
@@ -12,8 +13,10 @@ class RepositoryModel extends RepositoryEntity {
     required super.isFavorite,
   });
 
-  factory RepositoryModel.fromEntity({required RepositoryEntity entity}) {
-    return RepositoryModel(
+  factory FavoriteRepositoryModel.fromEntity({
+    required RepositoryEntity entity,
+  }) {
+    return FavoriteRepositoryModel(
       id: entity.id,
       name: entity.name,
       description: entity.description,
@@ -24,7 +27,8 @@ class RepositoryModel extends RepositoryEntity {
     );
   }
 
-  RepositoryModel copyWith({
+  @override
+  FavoriteRepositoryModel copyWith({
     String? id,
     String? name,
     String? description,
@@ -33,7 +37,7 @@ class RepositoryModel extends RepositoryEntity {
     int? watchers,
     bool? isFavorite,
   }) {
-    return RepositoryModel(
+    return FavoriteRepositoryModel(
       id: id ?? this.id,
       name: name ?? this.name,
       description: description ?? this.description,

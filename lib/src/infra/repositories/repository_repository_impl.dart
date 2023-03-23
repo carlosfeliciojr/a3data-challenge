@@ -1,4 +1,5 @@
 import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
+import 'package:a3data_challenge/src/core/enums/status_enum.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart';
@@ -85,5 +86,16 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
       key: KeysConstants.itemsKey,
       data: listFavoritesMap,
     );
+  }
+
+  @override
+  Future<StatusEnum> removeFavoriteInDatabase({
+    required RepositoryEntity unfavored,
+  }) async {
+    try {
+      return StatusEnum.success;
+    } catch (e) {
+      return StatusEnum.error;
+    }
   }
 }

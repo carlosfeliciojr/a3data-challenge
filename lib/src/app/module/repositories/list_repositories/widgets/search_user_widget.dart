@@ -37,7 +37,7 @@ class _SearchUserWidgetState extends State<SearchUserWidget> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const SizedBox(
-          width: 28,
+          width: 84,
         ),
         ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 192 + 32),

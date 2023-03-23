@@ -6,9 +6,10 @@ import 'package:a3data_challenge/src/app/module/repositories/list_repositories/w
 class FavoritesRepositoriesWidget extends StatelessWidget {
   const FavoritesRepositoriesWidget({
     Key? key,
+    required this.count,
     required this.onPressed,
   }) : super(key: key);
-
+  final int count;
   final void Function()? onPressed;
 
   @override
@@ -26,7 +27,7 @@ class FavoritesRepositoriesWidget extends StatelessWidget {
             splashRadius: 16,
             constraints: const BoxConstraints(maxWidth: 32),
           ),
-          const CounterFavoritesWidget(),
+          CounterFavoritesWidget(count: count),
         ],
       ),
     );
