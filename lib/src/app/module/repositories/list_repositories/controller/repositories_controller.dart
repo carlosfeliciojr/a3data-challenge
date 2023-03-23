@@ -16,7 +16,7 @@ class RepositoriesController extends ChangeNotifier {
     required this.getListOfUserRepositoriesUseCase,
     required this.setRepositoryAsFavoriteUseCase,
     required this.getListOfFavoritesRepositoriesUseCase,
-    // required this.updateListOfRepositoriesWithFavoritesUseCase,
+    required this.updateListOfRepositoriesWithFavoritesUseCase,
   });
 
   final GetListOfRepositoriesUseCase getListOfRepositoriesUseCase;
@@ -24,8 +24,8 @@ class RepositoriesController extends ChangeNotifier {
   final SetRepositoryAsFavoriteUseCase setRepositoryAsFavoriteUseCase;
   final GetListOfFavoritesRepositoriesUseCase
       getListOfFavoritesRepositoriesUseCase;
-  // final UpdateListOfRepositoriesWithFavoritesUseCase
-  //     updateListOfRepositoriesWithFavoritesUseCase;
+  final UpdateListOfRepositoriesWithFavoritesUseCase
+      updateListOfRepositoriesWithFavoritesUseCase;
 
   final repositories = RepositoriesModel();
   final user = UserModel(username: '');
