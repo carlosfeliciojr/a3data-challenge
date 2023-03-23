@@ -3,7 +3,6 @@
 ##Bugs
 
 Método de remoção do repositório do banco de dados local não foi implementado
-Ao pesquisar por um usuário, o valor apresentado no canto superior direito não reflete o valor correto
 Está mostrando somente uma linguagem, pois não foi implementado o serviço
 Paginação da busca pública não foi implementada
 
