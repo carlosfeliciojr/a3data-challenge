@@ -9,10 +9,8 @@ class RepositoryModel extends RepositoryEntity {
     required super.creationDate,
     required super.language,
     required super.watchers,
-    this.isFavorite = false,
+    required super.isFavorite,
   });
-
-  bool isFavorite;
 
   factory RepositoryModel.fromEntity({required RepositoryEntity entity}) {
     return RepositoryModel(
@@ -22,6 +20,7 @@ class RepositoryModel extends RepositoryEntity {
       creationDate: entity.creationDate,
       language: entity.language,
       watchers: entity.watchers,
+      isFavorite: entity.isFavorite,
     );
   }
 

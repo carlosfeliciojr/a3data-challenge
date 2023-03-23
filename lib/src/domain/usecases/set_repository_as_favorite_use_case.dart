@@ -17,7 +17,7 @@ class SetRepositoryAsFavoriteUseCase {
       newFavorite: newFavorite,
     )) {
       return StatusEnum.none;
-    } else if (_favoriteNeedUpdate(
+    } else if (_favoriteNeedsUpdate(
       listFavorites: listFavorites,
       newFavorite: newFavorite,
     )) {
@@ -39,10 +39,11 @@ class SetRepositoryAsFavoriteUseCase {
         favorite.description == newFavorite.description &&
         favorite.creationDate == newFavorite.creationDate &&
         favorite.language == newFavorite.language &&
-        favorite.watchers == newFavorite.watchers);
+        favorite.watchers == newFavorite.watchers &&
+        favorite.isFavorite == newFavorite.isFavorite);
   }
 
-  bool _favoriteNeedUpdate({
+  bool _favoriteNeedsUpdate({
     required List<RepositoryEntity> listFavorites,
     required RepositoryEntity newFavorite,
   }) {

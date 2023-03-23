@@ -186,6 +186,7 @@ class _RepositoryCardWidgetState extends State<RepositoryCardWidget>
                           creationDate: widget.creationDate,
                           language: widget.language,
                           watchers: widget.watchers,
+                          isFavorite: widget.isFavorite,
                         ),
                       ),
                       child: Padding(
