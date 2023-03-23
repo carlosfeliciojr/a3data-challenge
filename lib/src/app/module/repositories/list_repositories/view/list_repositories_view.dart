@@ -37,9 +37,9 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
           onChanged: controller.onInputUserName,
         ),
         actions: [
-          AnimatedBuilder(
-            animation: controller.favoritesRepositories,
-            builder: (context, snapshot) {
+          ValueListenableBuilder(
+            valueListenable: controller.favoritesRepositories,
+            builder: (_, __, ___) {
               return FavoritesRepositoriesWidget(
                 count: controller.favoritesRepositories.lenght,
                 onPressed: () {
@@ -58,9 +58,9 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
           initialData: controller.publicRepositories.list,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
-              return AnimatedBuilder(
-                animation: controller.publicRepositories,
-                builder: (context, widget) {
+              return ValueListenableBuilder(
+                valueListenable: controller.publicRepositories,
+                builder: (_, __, ___) {
                   if (controller.publicRepositories.isEmpty) {
                     return const WhitoutDataWidget();
                   }
