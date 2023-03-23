@@ -3,6 +3,7 @@ import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/infra/repositories/repository_repository_impl.dart';
 import 'package:mockito/mockito.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:a3data_challenge/src/infra/data_source/database.dart';
@@ -29,6 +30,7 @@ void main() {
               "creationDate": "2015-03-06T22:54:58.000",
               "language": "Dart",
               "watchers": 151346,
+              "isFavorite": true,
             }
           ];
 
@@ -47,6 +49,7 @@ void main() {
               "creationDate": "2015-03-06T22:54:58.000",
               "language": "Dart",
               "watchers": 151346,
+              "isFavorite": true,
             },
             {
               "id": "31792824",
@@ -56,6 +59,7 @@ void main() {
               "creationDate": "2015-03-06T22:54:58.000",
               "language": "Dart",
               "watchers": 151346,
+              "isFavorite": true,
             }
           ];
 
@@ -73,6 +77,7 @@ void main() {
             creationDate: DateTime(2015, 3, 6, 22, 54, 58),
             language: CodeLanguageEnum.dart,
             watchers: 151346,
+            isFavorite: true,
           );
 
           await repository.saveRepositoryInDatabase(
@@ -99,6 +104,7 @@ void main() {
               "creationDate": "2015-03-06T22:54:58.000",
               "language": "Dart",
               "watchers": 200000,
+              "isFavorite": true,
             },
           ];
 
@@ -119,6 +125,7 @@ void main() {
           expect(result.first.creationDate, isA<DateTime>());
           expect(result.first.language, isA<CodeLanguageEnum>());
           expect(result.first.watchers, isA<int>());
+          expect(result.first.isFavorite, isA<bool>());
         },
       );
     });
@@ -135,6 +142,7 @@ void main() {
               "creationDate": "2015-03-06T22:54:58.000",
               "language": "Dart",
               "watchers": 200000,
+              "isFavorite": true,
             },
           ];
 
@@ -146,6 +154,7 @@ void main() {
             creationDate: DateTime(2015, 3, 6, 22, 54, 58),
             language: CodeLanguageEnum.dart,
             watchers: 200000,
+            isFavorite: true,
           );
 
           when(

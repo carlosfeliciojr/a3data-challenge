@@ -30,6 +30,7 @@ void main() {
               creationDate: DateTime(2015, 3, 6, 22, 54, 58),
               language: CodeLanguageEnum.dart,
               watchers: 151346,
+              isFavorite: true,
             );
 
             when(
@@ -59,6 +60,7 @@ void main() {
               creationDate: DateTime(2015, 3, 6, 22, 54, 58),
               language: CodeLanguageEnum.dart,
               watchers: 151346,
+              isFavorite: true,
             );
 
             final database = [
@@ -69,7 +71,8 @@ void main() {
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
                 creationDate: DateTime(2015, 3, 6, 22, 54, 58),
                 language: CodeLanguageEnum.dart,
-                watchers: 200000,
+                watchers: 151346,
+                isFavorite: false,
               )
             ];
 
@@ -100,6 +103,7 @@ void main() {
               creationDate: DateTime(2015, 3, 6, 22, 54, 58),
               language: CodeLanguageEnum.dart,
               watchers: 151346,
+              isFavorite: true,
             );
 
             final databaseAnwser = [
@@ -111,6 +115,7 @@ void main() {
                 creationDate: DateTime(2015, 3, 6, 22, 54, 58),
                 language: CodeLanguageEnum.dart,
                 watchers: 151346,
+                isFavorite: true,
               ),
             ];
 

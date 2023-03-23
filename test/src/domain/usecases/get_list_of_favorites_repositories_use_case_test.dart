@@ -31,6 +31,7 @@ void main() {
               creationDate: DateTime(2015, 3, 6, 22, 54, 58),
               language: CodeLanguageEnum.dart,
               watchers: 151346,
+              isFavorite: false,
             ),
           ];
 

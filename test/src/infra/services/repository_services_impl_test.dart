@@ -44,7 +44,8 @@ void main() {
                       "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
                   "created_at": "2015-03-07T01:54:58.000Z",
                   "language": "Dart",
-                  "watchers": 151346
+                  "watchers": 151346,
+                  "isFavorite": false,
                 },
               ]
             };
@@ -93,7 +94,8 @@ void main() {
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
                 "created_at": "2015-03-07T01:54:58.000Z",
                 "language": "Dart",
-                "watchers": 151346
+                "watchers": 151346,
+                "isFavorite": false,
               },
             ];
 
