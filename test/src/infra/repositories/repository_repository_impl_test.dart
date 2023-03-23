@@ -3,7 +3,6 @@ import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/infra/repositories/repository_repository_impl.dart';
 import 'package:mockito/mockito.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test/test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:a3data_challenge/src/infra/data_source/database.dart';
