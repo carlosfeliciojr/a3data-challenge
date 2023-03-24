@@ -1,7 +1,7 @@
 import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
 import 'package:a3data_challenge/src/core/constants/services_contants.dart';
+import 'package:a3data_challenge/src/domain/entities/language_entity.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
-import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/domain/params/get_list_of_repositories_params.dart';
 import 'package:a3data_challenge/src/infra/data_source/http.dart';
 import 'package:a3data_challenge/src/infra/services/repository_services_impl.dart';
@@ -21,7 +21,7 @@ void main() {
       'getListOfRepositories',
       () {
         final params = GetListOfRepositoriesParams(
-          language: CodeLanguageEnum.dart,
+          language: "Dart",
           page: 1,
           amountPerPage: 1,
         );
@@ -30,7 +30,7 @@ void main() {
           'Success - With data',
           () async {
             final listQueryParams = [
-              params.language.text,
+              params.language,
               params.page,
               params.amountPerPage
             ];
@@ -71,7 +71,7 @@ void main() {
             expect(result.first.name, isA<String>());
             expect(result.first.description, isA<String>());
             expect(result.first.creationDate, isA<DateTime>());
-            expect(result.first.language, isA<CodeLanguageEnum>());
+            expect(result.first.language, isA<LanguageEntity>());
             expect(result.first.watchers, isA<int>());
           },
         );
@@ -120,7 +120,7 @@ void main() {
             expect(result.first.name, isA<String>());
             expect(result.first.description, isA<String>());
             expect(result.first.creationDate, isA<DateTime>());
-            expect(result.first.language, isA<CodeLanguageEnum>());
+            expect(result.first.language, isA<LanguageEntity>());
             expect(result.first.watchers, isA<int>());
           },
         );

@@ -9,7 +9,10 @@ class SearchUserWidget extends StatefulWidget {
     required this.onChanged,
   });
 
-  final Future<void> Function({required String username}) onSearch;
+  final Future<void> Function({
+    required BuildContext context,
+    required String username,
+  }) onSearch;
   final void Function(String) onChanged;
 
   @override
@@ -62,7 +65,7 @@ class _SearchUserWidgetState extends State<SearchUserWidget> {
         const SizedBox(width: 4),
         IconButton(
           onPressed: () async {
-            widget.onSearch(username: _textController.text);
+            widget.onSearch(context: context, username: _textController.text);
           },
           icon: const Icon(Icons.search, color: Color(0xffC9D1D9)),
           constraints: const BoxConstraints(maxWidth: 24, maxHeight: 24),

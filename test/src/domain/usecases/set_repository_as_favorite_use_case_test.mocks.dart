@@ -3,13 +3,15 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
-import 'package:a3data_challenge/src/core/enums/status_enum.dart' as _i5;
-import 'package:a3data_challenge/src/domain/entities/repository_entity.dart'
-    as _i4;
-import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart'
+import 'package:a3data_challenge/src/core/enums/status_enum.dart' as _i6;
+import 'package:a3data_challenge/src/domain/entities/language_entity.dart'
     as _i2;
+import 'package:a3data_challenge/src/domain/entities/repository_entity.dart'
+    as _i5;
+import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart'
+    as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -23,58 +25,96 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeLanguageEntity_0 extends _i1.SmartFake
+    implements _i2.LanguageEntity {
+  _FakeLanguageEntity_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [RepositoryRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRepositoryRepository extends _i1.Mock
-    implements _i2.RepositoryRepository {
+    implements _i3.RepositoryRepository {
   @override
-  _i3.Future<List<_i4.RepositoryEntity>> getListFavoritesFromDatabase() =>
+  _i4.Future<List<_i5.RepositoryEntity>> getListFavoritesFromDatabase() =>
       (super.noSuchMethod(
         Invocation.method(
           #getListFavoritesFromDatabase,
           [],
         ),
-        returnValue: _i3.Future<List<_i4.RepositoryEntity>>.value(
-            <_i4.RepositoryEntity>[]),
-        returnValueForMissingStub: _i3.Future<List<_i4.RepositoryEntity>>.value(
-            <_i4.RepositoryEntity>[]),
-      ) as _i3.Future<List<_i4.RepositoryEntity>>);
+        returnValue: _i4.Future<List<_i5.RepositoryEntity>>.value(
+            <_i5.RepositoryEntity>[]),
+        returnValueForMissingStub: _i4.Future<List<_i5.RepositoryEntity>>.value(
+            <_i5.RepositoryEntity>[]),
+      ) as _i4.Future<List<_i5.RepositoryEntity>>);
   @override
-  _i3.Future<void> saveRepositoryInDatabase(
-          {required _i4.RepositoryEntity? newFavorite}) =>
+  _i4.Future<void> saveRepositoryInDatabase(
+          {required _i5.RepositoryEntity? newFavorite}) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveRepositoryInDatabase,
           [],
           {#newFavorite: newFavorite},
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
   @override
-  _i3.Future<_i4.RepositoryEntity?> updateRepositoryInDatabase(
-          {required _i4.RepositoryEntity? modifiedFavorite}) =>
+  _i4.Future<_i5.RepositoryEntity?> updateRepositoryInDatabase(
+          {required _i5.RepositoryEntity? modifiedFavorite}) =>
       (super.noSuchMethod(
         Invocation.method(
           #updateRepositoryInDatabase,
           [],
           {#modifiedFavorite: modifiedFavorite},
         ),
-        returnValue: _i3.Future<_i4.RepositoryEntity?>.value(),
-        returnValueForMissingStub: _i3.Future<_i4.RepositoryEntity?>.value(),
-      ) as _i3.Future<_i4.RepositoryEntity?>);
+        returnValue: _i4.Future<_i5.RepositoryEntity?>.value(),
+        returnValueForMissingStub: _i4.Future<_i5.RepositoryEntity?>.value(),
+      ) as _i4.Future<_i5.RepositoryEntity?>);
   @override
-  _i3.Future<_i5.StatusEnum> removeFavoriteInDatabase(
-          {required _i4.RepositoryEntity? unfavored}) =>
+  _i4.Future<_i6.StatusEnum> removeFavoriteInDatabase(
+          {required _i5.RepositoryEntity? unfavored}) =>
       (super.noSuchMethod(
         Invocation.method(
           #removeFavoriteInDatabase,
           [],
           {#unfavored: unfavored},
         ),
-        returnValue: _i3.Future<_i5.StatusEnum>.value(_i5.StatusEnum.success),
+        returnValue: _i4.Future<_i6.StatusEnum>.value(_i6.StatusEnum.success),
         returnValueForMissingStub:
-            _i3.Future<_i5.StatusEnum>.value(_i5.StatusEnum.success),
-      ) as _i3.Future<_i5.StatusEnum>);
+            _i4.Future<_i6.StatusEnum>.value(_i6.StatusEnum.success),
+      ) as _i4.Future<_i6.StatusEnum>);
+  @override
+  _i4.Future<_i2.LanguageEntity> getRepositoryLanguage(
+          {required String? languageName}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getRepositoryLanguage,
+          [],
+          {#languageName: languageName},
+        ),
+        returnValue: _i4.Future<_i2.LanguageEntity>.value(_FakeLanguageEntity_0(
+          this,
+          Invocation.method(
+            #getRepositoryLanguage,
+            [],
+            {#languageName: languageName},
+          ),
+        )),
+        returnValueForMissingStub:
+            _i4.Future<_i2.LanguageEntity>.value(_FakeLanguageEntity_0(
+          this,
+          Invocation.method(
+            #getRepositoryLanguage,
+            [],
+            {#languageName: languageName},
+          ),
+        )),
+      ) as _i4.Future<_i2.LanguageEntity>);
 }

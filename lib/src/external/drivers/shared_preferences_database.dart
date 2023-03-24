@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:a3data_challenge/src/infra/data_source/database.dart';
+import 'package:a3data_challenge/src/infra/drivers/database.dart';
 
 class SharedPreferencesDatabase implements Database {
   SharedPreferencesDatabase({
@@ -23,21 +23,21 @@ class SharedPreferencesDatabase implements Database {
   }
 
   @override
-  Future<void> setItem({
+  Future<bool> setItem({
     required String key,
     required dynamic data,
   }) async {
     final jsonString = jsonEncode(data);
-    await sharedPreferences.setString(key, jsonString);
+    return await sharedPreferences.setString(key, jsonString);
   }
 
   @override
-  Future<void> removeItem({required String key}) async {
-    await sharedPreferences.remove(key);
+  Future<bool> removeItem({required String key}) async {
+    return await sharedPreferences.remove(key);
   }
 
   @override
-  Future<void> clear() async {
-    await sharedPreferences.clear();
+  Future<bool> clear() async {
+    return await sharedPreferences.clear();
   }
 }

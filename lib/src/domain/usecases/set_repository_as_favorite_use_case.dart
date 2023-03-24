@@ -38,7 +38,7 @@ class SetRepositoryAsFavoriteUseCase {
         favorite.id == newFavorite.id &&
         favorite.description == newFavorite.description &&
         favorite.creationDate == newFavorite.creationDate &&
-        favorite.language == newFavorite.language &&
+        favorite.language.name == newFavorite.language.name &&
         favorite.watchers == newFavorite.watchers &&
         favorite.isFavorite == newFavorite.isFavorite);
   }

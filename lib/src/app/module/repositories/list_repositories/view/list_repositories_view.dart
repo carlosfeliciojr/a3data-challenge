@@ -34,7 +34,10 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
         centerTitle: true,
         title: SearchUserWidget(
           onSearch: controller.getUserRepositories,
-          onChanged: controller.onInputUserName,
+          onChanged: (username) => controller.onInputUserName(
+            context: context,
+            username: username,
+          ),
         ),
         actions: [
           ValueListenableBuilder(
@@ -54,7 +57,7 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: FutureBuilder(
-          future: controller.getRepositories(),
+          future: controller.getRepositories(context: context),
           initialData: controller.publicRepositories.list,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {

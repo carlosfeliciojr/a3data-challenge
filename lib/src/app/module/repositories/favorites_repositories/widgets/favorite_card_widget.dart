@@ -1,5 +1,5 @@
 import 'package:a3data_challenge/src/app/module/repositories/favorites_repositories/models/favorite_repository_model.dart';
-import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
+import 'package:a3data_challenge/src/domain/entities/language_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -22,7 +22,7 @@ class FavoriteCardWidget extends StatefulWidget {
   final String name;
   final String description;
   final DateTime creationDate;
-  final CodeLanguageEnum language;
+  final LanguageEntity language;
   final int watchers;
   final int index;
   final int lastIndex;
@@ -101,21 +101,22 @@ class _RepositoryCardWidgetState extends State<FavoriteCardWidget>
                                       Container(
                                         height: 8,
                                         width: 8,
-                                        decoration: const BoxDecoration(
-                                          color: Color(0xff27B4AB),
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(4)),
+                                        decoration: BoxDecoration(
+                                          color: widget.language.color,
+                                          borderRadius: const BorderRadius.all(
+                                            Radius.circular(4),
+                                          ),
                                         ),
                                       ),
                                       const SizedBox(width: 8),
                                       SizedBox(
                                         width: 56,
                                         child: Text(
-                                          widget.language.text,
+                                          widget.language.name,
                                           overflow: TextOverflow.ellipsis,
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             fontWeight: FontWeight.w600,
-                                            color: Color(0xff27B4AB),
+                                            color: widget.language.color,
                                           ),
                                         ),
                                       ),

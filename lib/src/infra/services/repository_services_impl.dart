@@ -1,12 +1,13 @@
 import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
 import 'package:a3data_challenge/src/core/constants/services_contants.dart';
+import 'package:a3data_challenge/src/domain/entities/language_entity.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
-import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/domain/params/get_list_of_repositories_params.dart';
 import 'package:a3data_challenge/src/domain/services/repository_services.dart';
 import 'package:a3data_challenge/src/infra/data_source/http.dart';
 import 'package:a3data_challenge/src/shared/utils/map_tricks.dart';
 import 'package:a3data_challenge/src/shared/utils/string_tricks.dart';
+import 'package:flutter/material.dart';
 
 class RepositoryServicesImpl implements RepositoryServices {
   RepositoryServicesImpl({required this.http});
@@ -18,7 +19,7 @@ class RepositoryServicesImpl implements RepositoryServices {
     required GetListOfRepositoriesParams params,
   }) async {
     final listQueryParams = [
-      params.language.text,
+      params.language,
       params.page,
       params.amountPerPage
     ];
@@ -38,7 +39,10 @@ class RepositoryServicesImpl implements RepositoryServices {
           name: repository["name"],
           description: repository["description"],
           creationDate: DateTime.parse(repository["created_at"]).toLocal(),
-          language: CodeLanguageEnum.fromText(text: repository["language"]),
+          language: LanguageEntity(
+            name: repository["language"],
+            color: Colors.transparent,
+          ),
           watchers: repository["watchers"] as int,
           isFavorite: false,
         );
@@ -67,8 +71,10 @@ class RepositoryServicesImpl implements RepositoryServices {
             name: repository["name"],
             description: repository["description"],
             creationDate: DateTime.parse(repository["created_at"]).toLocal(),
-            language:
-                CodeLanguageEnum.fromText(text: repository["language"] ?? ''),
+            language: LanguageEntity(
+              name: repository["language"] ?? "Undentified",
+              color: Colors.transparent,
+            ),
             watchers: repository["watchers"] as int,
             isFavorite: false,
           );

@@ -1,11 +1,11 @@
-import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
+import 'package:a3data_challenge/src/domain/entities/language_entity.dart';
 
 class RepositoryEntity {
   String id;
   String name;
   String? description;
   DateTime creationDate;
-  CodeLanguageEnum language;
+  LanguageEntity language;
   int watchers;
   bool isFavorite;
 

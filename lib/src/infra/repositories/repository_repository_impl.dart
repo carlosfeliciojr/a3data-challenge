@@ -1,37 +1,50 @@
+import 'package:flutter/material.dart';
+
 import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
 import 'package:a3data_challenge/src/core/enums/status_enum.dart';
+import 'package:a3data_challenge/src/domain/entities/language_entity.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
-import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart';
-import 'package:a3data_challenge/src/infra/data_source/database.dart';
+import 'package:a3data_challenge/src/infra/drivers/database.dart';
 import 'package:a3data_challenge/src/shared/utils/map_tricks.dart';
 
 class RepositoryRepositoryImpl implements RepositoryRepository {
   final Database database;
 
-  RepositoryRepositoryImpl({required this.database});
+  RepositoryRepositoryImpl({
+    required this.database,
+  });
 
   @override
   Future<List<RepositoryEntity>> getListFavoritesFromDatabase() async {
     final favoritesDatabase = await database.getItem(
       key: KeysConstants.itemsKey,
     );
-    final listFavorites = MapTricks.convertDynamicToListMap(
+    final listFavoritesMap = MapTricks.convertDynamicToListMap(
       favoritesDatabase,
     );
-    return listFavorites
-        .map(
-          (favorite) => RepositoryEntity(
-            id: favorite["id"],
-            name: favorite["name"],
-            description: favorite["description"],
-            creationDate: DateTime.parse(favorite["creationDate"]).toLocal(),
-            language: CodeLanguageEnum.fromText(text: favorite["language"]),
-            watchers: favorite["watchers"],
-            isFavorite: favorite["isFavorite"],
+
+    final listFavorites = <RepositoryEntity>[];
+
+    listFavoritesMap.map(
+      (favoriteMap) async {
+        listFavorites.add(
+          RepositoryEntity(
+            id: favoriteMap["id"],
+            name: favoriteMap["name"],
+            description: favoriteMap["description"],
+            creationDate: DateTime.parse(favoriteMap["creationDate"]).toLocal(),
+            language: LanguageEntity(
+              name: favoriteMap["language"]["name"],
+              color: Color(favoriteMap["language"]["color"]),
+            ),
+            watchers: favoriteMap["watchers"],
+            isFavorite: favoriteMap["isFavorite"],
           ),
-        )
-        .toList();
+        );
+      },
+    ).toList();
+    return listFavorites;
   }
 
   @override
@@ -49,7 +62,8 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
               modifiedFavorite.description ||
           listFavorites[favoriteIndex].creationDate !=
               modifiedFavorite.creationDate ||
-          listFavorites[favoriteIndex].language != modifiedFavorite.language ||
+          listFavorites[favoriteIndex].language.name !=
+              modifiedFavorite.language.name ||
           listFavorites[favoriteIndex].watchers != modifiedFavorite.watchers ||
           listFavorites[favoriteIndex].isFavorite !=
               modifiedFavorite.isFavorite;
@@ -76,7 +90,10 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
             "name": favorite.name,
             "description": favorite.description,
             "creationDate": favorite.creationDate.toIso8601String(),
-            "language": favorite.language.text,
+            "language": {
+              "name": favorite.language.name,
+              "color": favorite.language.color.value,
+            },
             "watchers": favorite.watchers,
             "isFavorite": favorite.isFavorite,
           },
@@ -102,7 +119,10 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
               "name": favorite.name,
               "description": favorite.description,
               "creationDate": favorite.creationDate.toIso8601String(),
-              "language": favorite.language.text,
+              "language": {
+                "name": favorite.language.name,
+                "color": favorite.language.color.value,
+              },
               "watchers": favorite.watchers,
               "isFavorite": favorite.isFavorite,
             },

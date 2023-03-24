@@ -3,12 +3,12 @@ abstract class Database {
 
   Future<dynamic> getItem({required String key});
 
-  Future<void> setItem({
+  Future<bool> setItem({
     required String key,
     required dynamic data,
   });
 
-  Future<void> removeItem({required String key});
+  Future<bool> removeItem({required String key});
 
-  Future<void> clear();
+  Future<bool> clear();
 }

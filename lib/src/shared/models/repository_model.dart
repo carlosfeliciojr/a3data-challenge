@@ -1,5 +1,5 @@
+import 'package:a3data_challenge/src/domain/entities/language_entity.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
-import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 
 abstract class RepositoryModel extends RepositoryEntity {
   RepositoryModel({
@@ -17,7 +17,7 @@ abstract class RepositoryModel extends RepositoryEntity {
     String? name,
     String? description,
     DateTime? creationDate,
-    CodeLanguageEnum? language,
+    LanguageEntity? language,
     int? watchers,
     bool? isFavorite,
   });

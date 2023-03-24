@@ -1,20 +1,25 @@
 import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
 import 'package:a3data_challenge/src/core/enums/status_enum.dart';
+import 'package:a3data_challenge/src/domain/entities/language_entity.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
-import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
+import 'package:a3data_challenge/src/infra/drivers/asset_json.dart';
 import 'package:a3data_challenge/src/infra/repositories/repository_repository_impl.dart';
+import 'package:flutter/material.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:mockito/annotations.dart';
-import 'package:a3data_challenge/src/infra/data_source/database.dart';
+import 'package:a3data_challenge/src/infra/drivers/database.dart';
 
 import 'repository_repository_impl_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<Database>()])
+@GenerateNiceMocks([MockSpec<Database>(), MockSpec<AssetJson>()])
 void main() {
   final Database database = MockDatabase();
-  final RepositoryRepositoryImpl repository =
-      RepositoryRepositoryImpl(database: database);
+  final AssetJson assetJson = MockAssetJson();
+
+  final RepositoryRepositoryImpl repository = RepositoryRepositoryImpl(
+    database: database,
+  );
 
   group('RepositoryRepositoryImpl', () {
     group('saveRepositoryInDatabase', () {
@@ -28,7 +33,7 @@ void main() {
               "description":
                   "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
               "creationDate": "2015-03-06T22:54:58.000",
-              "language": "Dart",
+              "language": {"name": "Dart", "color": 0xFF00B4AB},
               "watchers": 151346,
               "isFavorite": true,
             }
@@ -47,7 +52,7 @@ void main() {
               "description":
                   "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
               "creationDate": "2015-03-06T22:54:58.000",
-              "language": "Dart",
+              "language": {"name": "Dart", "color": 0xFF00B4AB},
               "watchers": 151346,
               "isFavorite": true,
             },
@@ -57,7 +62,7 @@ void main() {
               "description":
                   "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
               "creationDate": "2015-03-06T22:54:58.000",
-              "language": "Dart",
+              "language": {"name": "Dart", "color": 0xFF00B4AB},
               "watchers": 151346,
               "isFavorite": true,
             }
@@ -66,7 +71,7 @@ void main() {
           when(
             database.setItem(key: KeysConstants.itemsKey, data: setItemData),
           ).thenAnswer(
-            (_) async {},
+            (_) async => true,
           );
 
           final newFavorite = RepositoryEntity(
@@ -75,7 +80,10 @@ void main() {
             description:
                 "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
             creationDate: DateTime(2015, 3, 6, 22, 54, 58),
-            language: CodeLanguageEnum.dart,
+            language: LanguageEntity(
+              name: "Dart",
+              color: const Color(0xFF00B4AB),
+            ),
             watchers: 151346,
             isFavorite: true,
           );
@@ -102,7 +110,7 @@ void main() {
               "description":
                   "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
               "creationDate": "2015-03-06T22:54:58.000",
-              "language": "Dart",
+              "language": {"name": "Dart", "color": 0xFF00B4AB},
               "watchers": 200000,
               "isFavorite": true,
             },
@@ -123,7 +131,7 @@ void main() {
           expect(result.first.name, isA<String>());
           expect(result.first.description, isA<String>());
           expect(result.first.creationDate, isA<DateTime>());
-          expect(result.first.language, isA<CodeLanguageEnum>());
+          expect(result.first.language, isA<LanguageEntity>());
           expect(result.first.watchers, isA<int>());
           expect(result.first.isFavorite, isA<bool>());
         },
@@ -140,7 +148,7 @@ void main() {
               "description":
                   "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
               "creationDate": "2015-03-06T22:54:58.000",
-              "language": "Dart",
+              "language": {"name": "Dart", "color": 0xFF00B4AB},
               "watchers": 200000,
               "isFavorite": true,
             },
@@ -152,7 +160,10 @@ void main() {
             description:
                 "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
             creationDate: DateTime(2015, 3, 6, 22, 54, 58),
-            language: CodeLanguageEnum.dart,
+            language: LanguageEntity(
+              name: "Dart",
+              color: const Color(0xFF00B4AB),
+            ),
             watchers: 200000,
             isFavorite: true,
           );
@@ -183,7 +194,7 @@ void main() {
               "description":
                   "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
               "creationDate": "2015-03-06T22:54:58.000",
-              "language": "Dart",
+              "language": {"name": "Dart", "color": 0xFF00B4AB},
               "watchers": 200000,
               "isFavorite": true,
             },
@@ -200,7 +211,7 @@ void main() {
           when(
             database.setItem(key: KeysConstants.itemsKey, data: steItemData),
           ).thenAnswer(
-            (_) async => {},
+            (_) async => true,
           );
 
           final favorite = RepositoryEntity(
@@ -209,7 +220,10 @@ void main() {
             description:
                 "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
             creationDate: DateTime(2015, 3, 6, 22, 54, 58),
-            language: CodeLanguageEnum.dart,
+            language: LanguageEntity(
+              name: "Dart",
+              color: const Color(0xFF00B4AB),
+            ),
             watchers: 200000,
             isFavorite: true,
           );

@@ -7,12 +7,13 @@ import 'package:a3data_challenge/src/domain/services/repository_services.dart';
 import 'package:a3data_challenge/src/domain/usecases/get_list_of_favorites_repositories_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/get_list_of_repositories_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/get_list_of_user_repositories_use_case.dart';
+import 'package:a3data_challenge/src/domain/usecases/get_repositories_with_languages_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/remove_favorite_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/set_repository_as_favorite_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/update_list_of_repositories_with_favorites_use_case.dart';
 import 'package:a3data_challenge/src/external/datasource/dart_http_impl.dart';
 import 'package:a3data_challenge/src/external/drivers/shared_preferences_database.dart';
-import 'package:a3data_challenge/src/infra/data_source/database.dart';
+import 'package:a3data_challenge/src/infra/drivers/database.dart';
 import 'package:a3data_challenge/src/infra/data_source/http.dart';
 import 'package:a3data_challenge/src/infra/repositories/repository_repository_impl.dart';
 import 'package:a3data_challenge/src/infra/services/repository_services_impl.dart';
@@ -79,6 +80,9 @@ void _registerUseCases() {
   getIt.registerSingleton<RemoveFavoriteUseCase>(
     RemoveFavoriteUseCase(repository: getIt.get<RepositoryRepository>()),
   );
+  getIt.registerSingleton<GetRepositoriesWithLanguagesUseCase>(
+    GetRepositoriesWithLanguagesUseCase(),
+  );
 }
 
 void _registerControllers() {
@@ -93,6 +97,8 @@ void _registerControllers() {
           getIt.get<GetListOfFavoritesRepositoriesUseCase>(),
       updateListOfRepositoriesWithFavoritesUseCase:
           getIt.get<UpdateListOfRepositoriesWithFavoritesUseCase>(),
+      getRepositoriesWithLanguagesUseCase:
+          getIt.get<GetRepositoriesWithLanguagesUseCase>(),
     ),
   );
 

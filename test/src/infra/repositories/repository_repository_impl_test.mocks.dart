@@ -5,7 +5,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:a3data_challenge/src/infra/data_source/database.dart' as _i2;
+import 'package:a3data_challenge/src/infra/drivers/asset_json.dart' as _i4;
+import 'package:a3data_challenge/src/infra/drivers/database.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -43,7 +44,7 @@ class MockDatabase extends _i1.Mock implements _i2.Database {
         returnValueForMissingStub: _i3.Future<dynamic>.value(),
       ) as _i3.Future<dynamic>);
   @override
-  _i3.Future<void> setItem({
+  _i3.Future<bool> setItem({
     required String? key,
     required dynamic data,
   }) =>
@@ -56,26 +57,42 @@ class MockDatabase extends _i1.Mock implements _i2.Database {
             #data: data,
           },
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i3.Future<bool>.value(false),
+        returnValueForMissingStub: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
   @override
-  _i3.Future<void> removeItem({required String? key}) => (super.noSuchMethod(
+  _i3.Future<bool> removeItem({required String? key}) => (super.noSuchMethod(
         Invocation.method(
           #removeItem,
           [],
           {#key: key},
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i3.Future<bool>.value(false),
+        returnValueForMissingStub: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
   @override
-  _i3.Future<void> clear() => (super.noSuchMethod(
+  _i3.Future<bool> clear() => (super.noSuchMethod(
         Invocation.method(
           #clear,
           [],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i3.Future<bool>.value(false),
+        returnValueForMissingStub: _i3.Future<bool>.value(false),
+      ) as _i3.Future<bool>);
+}
+
+/// A class which mocks [AssetJson].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAssetJson extends _i1.Mock implements _i4.AssetJson {
+  @override
+  _i3.Future<dynamic> getItem({required String? path}) => (super.noSuchMethod(
+        Invocation.method(
+          #getItem,
+          [],
+          {#path: path},
+        ),
+        returnValue: _i3.Future<dynamic>.value(),
+        returnValueForMissingStub: _i3.Future<dynamic>.value(),
+      ) as _i3.Future<dynamic>);
 }

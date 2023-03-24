@@ -1,8 +1,9 @@
 import 'package:a3data_challenge/src/core/enums/status_enum.dart';
+import 'package:a3data_challenge/src/domain/entities/language_entity.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
-import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/domain/repositories/repository_repository.dart';
 import 'package:a3data_challenge/src/domain/usecases/set_repository_as_favorite_use_case.dart';
+import 'package:flutter/material.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:mockito/annotations.dart';
@@ -28,7 +29,10 @@ void main() {
               description:
                   "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
               creationDate: DateTime(2015, 3, 6, 22, 54, 58),
-              language: CodeLanguageEnum.dart,
+              language: LanguageEntity(
+                name: "Dart",
+                color: const Color(0xFF00B4AB),
+              ),
               watchers: 151346,
               isFavorite: true,
             );
@@ -58,7 +62,10 @@ void main() {
               description:
                   "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
               creationDate: DateTime(2015, 3, 6, 22, 54, 58),
-              language: CodeLanguageEnum.dart,
+              language: LanguageEntity(
+                name: "Dart",
+                color: const Color(0xFF00B4AB),
+              ),
               watchers: 151346,
               isFavorite: true,
             );
@@ -70,7 +77,10 @@ void main() {
                 description:
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
                 creationDate: DateTime(2015, 3, 6, 22, 54, 58),
-                language: CodeLanguageEnum.dart,
+                language: LanguageEntity(
+                  name: "Dart",
+                  color: const Color(0xFF00B4AB),
+                ),
                 watchers: 151346,
                 isFavorite: false,
               )
@@ -101,7 +111,10 @@ void main() {
               description:
                   "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
               creationDate: DateTime(2015, 3, 6, 22, 54, 58),
-              language: CodeLanguageEnum.dart,
+              language: LanguageEntity(
+                name: "Dart",
+                color: const Color(0xFF00B4AB),
+              ),
               watchers: 151346,
               isFavorite: true,
             );
@@ -113,7 +126,10 @@ void main() {
                 description:
                     "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
                 creationDate: DateTime(2015, 3, 6, 22, 54, 58),
-                language: CodeLanguageEnum.dart,
+                language: LanguageEntity(
+                  name: "Dart",
+                  color: const Color(0xFF00B4AB),
+                ),
                 watchers: 151346,
                 isFavorite: true,
               ),
