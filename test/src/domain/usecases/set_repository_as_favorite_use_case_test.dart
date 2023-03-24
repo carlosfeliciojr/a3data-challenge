@@ -15,9 +15,9 @@ void main() {
   final SetRepositoryAsFavoriteUseCase setRepositoryAsFavoriteUseCase =
       SetRepositoryAsFavoriteUseCase(repository: repository);
 
-  group('RepositoryRepositoryImpl', () {
+  group('SetRepositoryAsFavoriteUseCase', () {
     group(
-      'saveFavoriteRepository',
+      'Success',
       () {
         test(
           'Success',

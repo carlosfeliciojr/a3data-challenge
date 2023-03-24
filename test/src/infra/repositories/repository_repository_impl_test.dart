@@ -1,4 +1,5 @@
 import 'package:a3data_challenge/src/core/constants/keys_constants.dart';
+import 'package:a3data_challenge/src/core/enums/status_enum.dart';
 import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
 import 'package:a3data_challenge/src/infra/repositories/repository_repository_impl.dart';
@@ -167,6 +168,59 @@ void main() {
           );
 
           expect(result, isNull);
+        },
+      );
+    });
+
+    group('removeFavoriteInDatabase', () {
+      test(
+        'Success',
+        () async {
+          final databaseItemData = <dynamic>[
+            {
+              "id": "31792824",
+              "name": "flutter",
+              "description":
+                  "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+              "creationDate": "2015-03-06T22:54:58.000",
+              "language": "Dart",
+              "watchers": 200000,
+              "isFavorite": true,
+            },
+          ];
+
+          when(
+            database.getItem(key: KeysConstants.itemsKey),
+          ).thenAnswer(
+            (_) async => databaseItemData,
+          );
+
+          final steItemData = <dynamic>[];
+
+          when(
+            database.setItem(key: KeysConstants.itemsKey, data: steItemData),
+          ).thenAnswer(
+            (_) async => {},
+          );
+
+          final favorite = RepositoryEntity(
+            id: "31792824",
+            name: "flutter",
+            description:
+                "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+            creationDate: DateTime(2015, 3, 6, 22, 54, 58),
+            language: CodeLanguageEnum.dart,
+            watchers: 200000,
+            isFavorite: true,
+          );
+
+          final result = await repository.removeFavoriteInDatabase(
+            unfavored: favorite,
+          );
+
+          expect(result, isNotNull);
+          expect(result, isA<StatusEnum>());
+          expect(result, equals(StatusEnum.success));
         },
       );
     });

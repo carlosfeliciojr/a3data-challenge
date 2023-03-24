@@ -93,6 +93,25 @@ class RepositoryRepositoryImpl implements RepositoryRepository {
     required RepositoryEntity unfavored,
   }) async {
     try {
+      final listFavorites = await getListFavoritesFromDatabase();
+      listFavorites.removeWhere((favorite) => favorite.id == unfavored.id);
+      final listFavoritesMap = listFavorites
+          .map(
+            (favorite) => <String, dynamic>{
+              "id": favorite.id,
+              "name": favorite.name,
+              "description": favorite.description,
+              "creationDate": favorite.creationDate.toIso8601String(),
+              "language": favorite.language.text,
+              "watchers": favorite.watchers,
+              "isFavorite": favorite.isFavorite,
+            },
+          )
+          .toList();
+      await database.setItem(
+        key: KeysConstants.itemsKey,
+        data: listFavoritesMap,
+      );
       return StatusEnum.success;
     } catch (e) {
       return StatusEnum.error;
