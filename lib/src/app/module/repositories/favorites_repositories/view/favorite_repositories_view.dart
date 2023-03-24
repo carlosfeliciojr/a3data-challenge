@@ -46,10 +46,10 @@ class _ListRepositoriesViewState extends State<FavoritesRepositoriesView> {
                     return const WhitoutDataWidget();
                   }
                   return ListView.builder(
-                    itemCount: controller.favoritesRepositories.lenght,
+                    itemCount: controller.favoritesRepositories.length,
                     itemBuilder: (context, index) {
                       final lastIndex =
-                          controller.favoritesRepositories.lenght - 1;
+                          controller.favoritesRepositories.length - 1;
                       final repository =
                           controller.favoritesRepositories.list[index];
                       return FavoriteCardWidget(

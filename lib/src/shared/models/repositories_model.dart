@@ -12,7 +12,7 @@ abstract class RepositoriesModel extends ValueNotifier {
     return [...value];
   }
 
-  int get lenght {
+  int get length {
     return list.length;
   }
 

@@ -41,7 +41,7 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
             valueListenable: controller.favoritesRepositories,
             builder: (_, __, ___) {
               return FavoritesRepositoriesWidget(
-                count: controller.favoritesRepositories.lenght,
+                count: controller.favoritesRepositories.length,
                 onPressed: () {
                   Navigator.of(context)
                       .pushNamed(Routes.listFavoritesRepositories);
@@ -65,10 +65,10 @@ class _ListRepositoriesViewState extends State<ListRepositoriesView> {
                     return const WhitoutDataWidget();
                   }
                   return ListView.builder(
-                    itemCount: controller.publicRepositories.lenght,
+                    itemCount: controller.publicRepositories.length,
                     itemBuilder: (context, index) {
                       final lastIndex =
-                          controller.publicRepositories.lenght - 1;
+                          controller.publicRepositories.length - 1;
                       final repository =
                           controller.publicRepositories.list[index];
                       return PublicCardWidget(
