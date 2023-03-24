@@ -46,12 +46,13 @@ class RepositoriesController {
         ),
       ),
     );
-    final listRepositories = updateListOfRepositoriesWithFavoritesUseCase(
+    final listPublicRepositoriesUpdated =
+        updateListOfRepositoriesWithFavoritesUseCase(
       favorites: favoritesRepositories.list,
       repositories: publicRepositories.list,
     );
     publicRepositories.populateListOfRepositories(
-      list: listRepositories,
+      list: listPublicRepositoriesUpdated,
     );
     return publicRepositories.list;
   }
@@ -65,11 +66,14 @@ class RepositoriesController {
         username: username,
       ),
     );
-    final listRepositories = updateListOfRepositoriesWithFavoritesUseCase(
+    final listPublicRepositoriesUpdated =
+        updateListOfRepositoriesWithFavoritesUseCase(
       favorites: favoritesRepositories.list,
       repositories: publicRepositories.list,
     );
-    favoritesRepositories.populateListOfRepositories(list: listRepositories);
+    publicRepositories.populateListOfRepositories(
+      list: listPublicRepositoriesUpdated,
+    );
   }
 
   void onInputUserName(String username) {
