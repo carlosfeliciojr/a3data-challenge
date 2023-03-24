@@ -30,4 +30,4 @@ flutter:
   assets:
     - assets/
     - assets/svg/
-    - assets/json
+    - assets/jsons
