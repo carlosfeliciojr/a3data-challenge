@@ -1,14 +1,3 @@
-###Projeto incompleto
-
-##Bugs
-
-Está mostrando somente uma linguagem, pois não foi implementado o serviço
-Paginação da busca pública não foi implementada
-
-###Motivo dos bugs
-
-Prazo subestimado para a aplicação dos conceitos
-
 ###A3Data Challenge
 Este projeto utiliza conceitos de Clean Architecture, SOLID, Clean Code e TDD para desenvolver um aplicativo móvel em Flutter. O objetivo do projeto é fornecer uma solução para o A3Data Challenge.
 
