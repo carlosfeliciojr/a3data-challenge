@@ -2,7 +2,6 @@
 
 ##Bugs
 
-Método de remoção do repositório do banco de dados local não foi implementado
 Está mostrando somente uma linguagem, pois não foi implementado o serviço
 Paginação da busca pública não foi implementada
 
