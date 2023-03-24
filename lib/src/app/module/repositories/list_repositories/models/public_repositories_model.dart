@@ -3,7 +3,8 @@ import 'package:a3data_challenge/src/domain/entities/repository_entity.dart';
 import 'package:a3data_challenge/src/shared/models/repositories_model.dart';
 
 class PublicRepositoriesModel extends RepositoriesModel {
-  PublicRepositoriesModel(super.value);
+  PublicRepositoriesModel._(super.value);
+  static final instance = PublicRepositoriesModel._([]);
 
   @override
   void populateListOfRepositories({required List<RepositoryEntity> list}) {

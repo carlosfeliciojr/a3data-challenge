@@ -29,7 +29,7 @@ class RepositoriesController {
   final UpdateListOfRepositoriesWithFavoritesUseCase
       updateListOfRepositoriesWithFavoritesUseCase;
 
-  final publicRepositories = PublicRepositoriesModel([]);
+  final publicRepositories = PublicRepositoriesModel.instance;
   final favoritesRepositories = FavoritesRepositoriesModel.instance;
   final user = UserModel(username: '');
 
