@@ -22,5 +22,6 @@ class PublicRepositoriesModel extends RepositoriesModel {
         ),
       );
     }
+    notifyListeners();
   }
 }
