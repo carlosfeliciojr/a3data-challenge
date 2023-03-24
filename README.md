@@ -8,7 +8,7 @@ Clean Architecture é uma abordagem de arquitetura de software que enfatiza a se
 
 No projeto A3Data Challenge, seguimos os princípios da Clean Architecture, criando camadas claramente definidas que se comunicam através de interfaces bem definidas.
 
-## OLID
+## SOLID
 SOLID é um conjunto de princípios de programação orientada a objetos que visam facilitar a manutenção e a evolução de um código. Os princípios SOLID são:
 
 Single Responsibility Principle (SRP)
