@@ -3,7 +3,8 @@ import 'package:a3data_challenge/src/app/module/repositories/favorites_repositor
 import 'package:a3data_challenge/src/shared/models/repositories_model.dart';
 
 class FavoritesRepositoriesModel extends RepositoriesModel {
-  FavoritesRepositoriesModel(super.value);
+  FavoritesRepositoriesModel._(super.value);
+  static final instance = FavoritesRepositoriesModel._([]);
 
   @override
   void populateListOfRepositories({required List<RepositoryEntity> list}) {

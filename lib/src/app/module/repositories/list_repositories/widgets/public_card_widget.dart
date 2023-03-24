@@ -1,6 +1,5 @@
 import 'package:a3data_challenge/src/app/module/repositories/list_repositories/models/public_repository_model.dart';
 import 'package:a3data_challenge/src/domain/enums/code_language_enum.dart';
-import 'package:a3data_challenge/src/shared/models/repository_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

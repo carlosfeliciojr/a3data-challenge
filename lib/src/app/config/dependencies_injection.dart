@@ -7,6 +7,7 @@ import 'package:a3data_challenge/src/domain/services/repository_services.dart';
 import 'package:a3data_challenge/src/domain/usecases/get_list_of_favorites_repositories_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/get_list_of_repositories_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/get_list_of_user_repositories_use_case.dart';
+import 'package:a3data_challenge/src/domain/usecases/remove_favorite_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/set_repository_as_favorite_use_case.dart';
 import 'package:a3data_challenge/src/domain/usecases/update_list_of_repositories_with_favorites_use_case.dart';
 import 'package:a3data_challenge/src/external/datasource/dart_http_impl.dart';
@@ -75,6 +76,9 @@ void _registerUseCases() {
   getIt.registerSingleton<UpdateListOfRepositoriesWithFavoritesUseCase>(
     UpdateListOfRepositoriesWithFavoritesUseCase(),
   );
+  getIt.registerSingleton<RemoveFavoriteUseCase>(
+    RemoveFavoriteUseCase(repository: getIt.get<RepositoryRepository>()),
+  );
 }
 
 void _registerControllers() {
@@ -96,6 +100,7 @@ void _registerControllers() {
     () => FavoritesRepositoriesController(
       getListOfFavoritesRepositoriesUseCase:
           getIt.get<GetListOfFavoritesRepositoriesUseCase>(),
+      removeFavoriteUseCase: getIt.get<RemoveFavoriteUseCase>(),
     ),
   );
 }

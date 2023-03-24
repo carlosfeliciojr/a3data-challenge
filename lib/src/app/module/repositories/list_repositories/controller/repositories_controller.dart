@@ -30,7 +30,7 @@ class RepositoriesController {
       updateListOfRepositoriesWithFavoritesUseCase;
 
   final publicRepositories = PublicRepositoriesModel([]);
-  final favoritesRepositories = FavoritesRepositoriesModel([]);
+  final favoritesRepositories = FavoritesRepositoriesModel.instance;
   final user = UserModel(username: '');
 
   Future<List<RepositoryModel>> getRepositories() async {
